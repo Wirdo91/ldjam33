@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour {
 		_grounded = true;
 		_playerRigidbody = GetComponent<Rigidbody2D> ();
         _gameCamera = Camera.main;
-	}
+        _playerRigidbody.freezeRotation = true;
+    }
 
     void FixedUpdate()
     {
