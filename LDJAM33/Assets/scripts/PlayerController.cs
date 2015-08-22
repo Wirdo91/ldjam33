@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
 	private Vector2 _force = new Vector2(0,50);
 	private Rigidbody2D _playerRigidbody;
 	private bool _grounded;
-	public GameObject platform;
+	public BoxCollider2D platform;
 
 	public float _speed;
 	// Use this for initialization
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.tag == "platform") 
+		if (collision.gameObject.tag == "player") 
 		{
 			_grounded = true;
 		}
