@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class Powerup : MonoBehaviour {
-
-	float timer = 5;
 	
 	// Use this for initialization
 	void Start () {
