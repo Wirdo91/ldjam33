@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour {
 	private CanvasGroup _canvasGroup;
 	public float _speed;
 	private bool _dead;
-	[SerializeField]
-	private GameObject spawner;
+	public float powerUpTimer = 5;
+	private bool _powerUped;
 
 	void Start ()
     {
@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
         _gameCamera = Camera.main;
         _playerRigidbody.freezeRotation = true;
 		_dead = false;
+		_powerUped = false;
 
 
     }
@@ -38,7 +39,14 @@ public class PlayerController : MonoBehaviour {
         _gameCamera.transform.position = new Vector3(this.transform.position.x + 6, 0, -10);
 		player.transform.Translate(Vector2.right * _speed * Time.deltaTime);
 		CheckDeath ();
-
+		if (_powerUped) 
+		{
+			powerUpTimer -= Time.deltaTime;
+		}
+		if (powerUpTimer <= 0) 
+		{
+			_speed = 10;
+		}
 	}
 
     void LateUpdate()
@@ -78,6 +86,14 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter2D(Collider2D collider)
+	{
+		if (collider.GetComponent<Powerup> () != null) 
+		{
+			collider.GetComponent<Powerup>().affect(this);
+			_powerUped = true;
+		}
+	}
 
 	void Jump(Vector2 force)
 	{
