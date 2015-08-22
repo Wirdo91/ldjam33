@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 
 		player.transform.Translate(Vector2.right * _speed * Time.deltaTime);
-		if (Input.GetKeyDown (KeyCode.Space) && checkJump()) 
+		if (Input.GetKeyDown (KeyCode.Space) && _grounded) 
 		{
 
 			Jump(_force);
@@ -34,15 +34,13 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	bool checkJump()
-	{
-		//check if the player tag hits the platform tag.
-		return true;
-	}
 
 	void OnCollisionEnter(Collision collision)
 	{
-
+		if (collision.gameObject.tag == "platform") 
+		{
+			_grounded = true;
+		}
 	}
 
 	void Jump(Vector2 force)
