@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour {
     Camera _gameCamera;
 
 	public float _speed;
-	// Use this for initialization
 
 	void Start ()
     {
@@ -26,7 +25,6 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-	// Update is called once per frame
 	void Update ()
     {
 
