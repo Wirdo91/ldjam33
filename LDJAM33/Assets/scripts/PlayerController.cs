@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject _canvasGroup;
     public float _speed;
-    private bool _dead;
+    private bool _dead = true;
     public float powerUpTimer = 5;
     private bool _powerUped;
     private float _health = 3;
@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 	private float invincibleTimer = 2;
 	private bool hurt;
 	private float maxHealth = 3;
+	private Transform restartText;
 
 	public float Health {
 		get{
@@ -38,24 +39,38 @@ public class PlayerController : MonoBehaviour
 				ShowGameOver();
 			}
 			_health = value;
+			healthBar.fillAmount = Health/maxHealth;
+
 		}
 	}
 	Transform textbox;
     void Start()
     {
-        _player = this.gameObject;
+
+		//show menu
+		//do not walk
+		_speed = 0;
+		_player = this.gameObject;
         _grounded = true;
         _playerRigidbody = GetComponent<Rigidbody2D>();
         _gameCamera = Camera.main;
         _playerRigidbody.freezeRotation = true;
         _dead = false;
         _powerUped = false;
-        textbox = _canvasGroup.transform.FindChild("GameOver");
-        textbox.gameObject.SetActive(false);
+
+        
+		restartText = _canvasGroup.transform.FindChild("Restart");
+		restartText.gameObject.SetActive (true);
+		if (Input.GetKeyDown (KeyCode.Space)) 
+		{
+			_canvasGroup.SetActive(false);
+		}
 
     }
     void Update()
     {
+		//walk
+		//the start wait untill you have pressed jump before you start
 
 		if (_dead) {
 			ShowGameOver();
@@ -98,9 +113,6 @@ public class PlayerController : MonoBehaviour
         {
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), false);
         }
-
-
-
 		CheckDeath();
     }
 
@@ -140,7 +152,7 @@ public class PlayerController : MonoBehaviour
 
     void ShowGameOver()
     {
-        textbox.gameObject.SetActive(true);
+        _canvasGroup.SetActive(true);
         //Destroy (_player);
         //destroy world gen?
     }
