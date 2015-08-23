@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject _particles;
 
-    private Vector2 _force = new Vector2(30, 0);
+    private Vector2 _force = new Vector2(0, 30);
 	private Rigidbody2D _playerRigidbody;
 	private bool _grounded;
     Camera _gameCamera;
@@ -65,10 +65,11 @@ public class PlayerController : MonoBehaviour
     void LateUpdate()
     {
 
+		Debug.Log (_grounded);
         if (Input.GetKeyDown(KeyCode.Space) && _grounded)
         {
+			Jump(_force);
             _grounded = false;
-            Jump(_force);
         }
     }
 
@@ -95,46 +96,39 @@ public class PlayerController : MonoBehaviour
 	{
 		Transform textbox = _canvasGroup.transform.FindChild("GameOver");
 		textbox.gameObject.SetActive(true);
-		Destroy (player);
+		//Destroy (_player);
+		//destroy world gen?
 	}
 
 	void CheckDeath()
 	{
 
-		if(player.transform.position.y <= -6)
-		{
+		if (_player.transform.position.y <= -6) {
 
 			//Call gameover
-			ShowGameOver();
+			ShowGameOver ();
 			_dead = true;
 		}
-		if(health == 0)
-		{
+		if (health == 0) {
 			_dead = true;
-			ShowGameOver();
+			ShowGameOver ();
 
-		if(_player.transform.position.y <= -6)
-		{
-			//TODO: Call gameover
-			_canvasGroup.alpha = 1;
-			_dead = true;
+			if (_player.transform.position.y <= -6) {
+				//TODO: Call gameover
+				_canvasGroup.SetActive(true);
+				_dead = true;
 
-		}
+			}
 
-		if (Input.GetKeyDown(KeyCode.Space) && _dead == true)
-		{
-			//just restart scene
-			Application.LoadLevel(Application.loadedLevel);		
+			if (Input.GetKeyDown (KeyCode.Space) && _dead == true) {
+				//just restart scene
+				Application.LoadLevel (Application.loadedLevel);		
+			}
 		}
 	}
 
-
-
 	void OnTriggerEnter2D(Collider2D collider)
 	{
-
-
-
 		if (collider.GetComponent<Powerup> () != null) 
 		{
 			collider.GetComponent<Powerup>().affect(this);
