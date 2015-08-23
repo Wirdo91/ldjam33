@@ -5,7 +5,17 @@ public class AngryMob : MonoBehaviour {
 
     PlayerController _player;
 
+    System.Random random = new System.Random();
+
+    [SerializeField]
+    bool _frenzied = false;
+
     float _baseSpeed;
+
+    [SerializeField]
+    GameObject _torchPrefab;
+    [SerializeField]
+    GameObject _pitchforkPrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -21,5 +31,23 @@ public class AngryMob : MonoBehaviour {
             this.transform.Translate(Vector3.right * _baseSpeed * Time.deltaTime);
         else
             this.transform.Translate(Vector3.right * (_player._speed * .75f) * Time.deltaTime);
+
+        if (_frenzied)
+        {
+            GameObject spawnedObject = null;
+            switch(random.Next(0, 2))
+            {
+                case 0:
+                    spawnedObject = Instantiate(_torchPrefab);
+                    break;
+                case 1:
+                    spawnedObject = Instantiate(_pitchforkPrefab);
+                    break;
+            }
+            if (spawnedObject != null)
+                spawnedObject.transform.position = this.transform.position;
+
+            _frenzied = false;
+        }
 	}
 }

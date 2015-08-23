@@ -181,8 +181,11 @@ public class PlayerController : MonoBehaviour
 
         if (collider.name == "Angry Mob")
         {
+            Health = 0;
             _dead = true;
         }
+        else if (collider.GetComponent<WeaponMove>() != null)
+            hurt = true;
     }
 
     void Jump(Vector2 force)
