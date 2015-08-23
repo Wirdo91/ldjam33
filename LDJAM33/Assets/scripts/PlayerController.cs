@@ -140,7 +140,6 @@ public class PlayerController : MonoBehaviour
 
     void ShowGameOver()
     {
-		Debug.Log("inside gameover");
         textbox.gameObject.SetActive(true);
         //Destroy (_player);
         //destroy world gen?
