@@ -178,6 +178,11 @@ public class PlayerController : MonoBehaviour
             collider.GetComponent<Powerup>().affect(this);
             _powerUped = true;
         }
+
+        if (collider.name == "Angry Mob")
+        {
+            _dead = true;
+        }
     }
 
     void Jump(Vector2 force)
