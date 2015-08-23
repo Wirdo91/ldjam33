@@ -47,6 +47,15 @@ public class PlayerController : MonoBehaviour {
 		{
 			_speed = 10;
 		}
+
+        if (this._playerRigidbody.velocity.y > 0)
+        {
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), true);
+        }
+        else
+        {
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), false);
+        }
 	}
 
     void LateUpdate()
