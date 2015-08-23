@@ -10,11 +10,15 @@ public class PlayerController : MonoBehaviour {
 	private bool _grounded;
     Camera _gameCamera;
 	[SerializeField]
-	private CanvasGroup _canvasGroup;
+	private GameObject _canvasGroup;
 	public float _speed;
 	private bool _dead;
 	public float powerUpTimer = 5;
 	private bool _powerUped;
+	private int health = 3;
+	[SerializeField]
+	private Image healthBar;
+
 
 	void Start ()
     {
@@ -25,7 +29,8 @@ public class PlayerController : MonoBehaviour {
         _playerRigidbody.freezeRotation = true;
 		_dead = false;
 		_powerUped = false;
-
+		Transform textbox = _canvasGroup.transform.FindChild("GameOver");
+		textbox.gameObject.SetActive(false);
 
     }
 
@@ -72,31 +77,60 @@ public class PlayerController : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
+
+		if (collision.gameObject.tag == "spike" && health > 0) 
+		{
+			//take dmg
+			health -= 1;
+			healthBar.fillAmount = 1/health;
+			
+			
+		}
+
 		if (collision.gameObject.tag == "platform")
 		{
 			_grounded = true;
 		}
 	}
 
+	void ShowGameOver()
+	{
+		Transform textbox = _canvasGroup.transform.FindChild("GameOver");
+		textbox.gameObject.SetActive(true);
+		Destroy (player);
+	}
+
 	void CheckDeath()
 	{
+
 		if(player.transform.position.y <= -6)
 		{
-			//Call gameover
-			_canvasGroup.alpha = 1;
-			_dead = true;
 
+			//Call gameover
+			ShowGameOver();
+			_dead = true;
+		}
+		if(health == 0)
+		{
+			_dead = true;
+			ShowGameOver();
 
 		}
 
 		if (Input.GetKeyDown(KeyCode.Space) && _dead == true)
 		{
-			Application.LoadLevel("RunnerScene");
+			//just restart scene
+			Application.LoadLevel(Application.loadedLevel);		
 		}
 	}
 
+
+
 	void OnTriggerEnter2D(Collider2D collider)
 	{
+
+
+
 		if (collider.GetComponent<Powerup> () != null) 
 		{
 			collider.GetComponent<Powerup>().affect(this);
