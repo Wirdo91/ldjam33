@@ -19,11 +19,28 @@ public class PlayerController : MonoBehaviour
     private bool _dead;
     public float powerUpTimer = 5;
     private bool _powerUped;
-    private int health = 3;
+    private float _health = 3;
     [SerializeField]
     private Image healthBar;
+	private bool invincible;
+	private float invincibleTimer = 2;
+	private bool hurt;
+	private float maxHealth = 3;
 
+	public float Health {
+		get{
+			return _health;
+		}
 
+		set{
+			if(value == 0)
+			{
+				ShowGameOver();
+			}
+			_health = value;
+		}
+	}
+	Transform textbox;
     void Start()
     {
         _player = this.gameObject;
@@ -33,16 +50,27 @@ public class PlayerController : MonoBehaviour
         _playerRigidbody.freezeRotation = true;
         _dead = false;
         _powerUped = false;
-        Transform textbox = _canvasGroup.transform.FindChild("GameOver");
+        textbox = _canvasGroup.transform.FindChild("GameOver");
         textbox.gameObject.SetActive(false);
 
     }
     void Update()
     {
-        _gameCamera.transform.position = new Vector3(this.transform.position.x + 6, 0, -10);
+
+		if (_dead) {
+			ShowGameOver();
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				//just restart scene
+				Application.LoadLevel(Application.loadedLevel);
+			}
+			return;
+		}
+		
+		_gameCamera.transform.position = new Vector3(this.transform.position.x + 6, 0, -10);
         _particles.transform.position = new Vector3(this.transform.position.x + 14, 0, 0);
         _player.transform.Translate(Vector2.right * _speed * Time.deltaTime);
-        CheckDeath();
+        
         if (_powerUped)
         {
             powerUpTimer -= Time.deltaTime;
@@ -52,6 +80,16 @@ public class PlayerController : MonoBehaviour
             _speed = 10;
         }
 
+		if (invincible == true) 
+		{
+			invincibleTimer -= Time.deltaTime;
+
+		}
+		if (invincibleTimer <= 0) 
+		{
+			invincible = false;
+		}
+
         if (this._playerRigidbody.velocity.y > 0)
         {
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), true);
@@ -60,30 +98,38 @@ public class PlayerController : MonoBehaviour
         {
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), false);
         }
+
+
+
+		CheckDeath();
     }
 
     void LateUpdate()
     {
-
-        Debug.Log(_grounded);
-        if (Input.GetKeyDown(KeyCode.Space) && _grounded)
+		if (Input.GetKeyDown(KeyCode.Space) && _grounded)
         {
             Jump(_force);
             _grounded = false;
         }
-    }
 
-
-    void OnCollisionEnter2D(Collision2D collision)
+		if (hurt) 
+		{
+			//take dmg
+			//Just be invicible during 2 secs
+			Health -= 1;
+			healthBar.fillAmount = Health / maxHealth;
+			invincible = true;
+			hurt = false;
+		}
+		
+	}
+	
+	void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "spike" && health > 0)
+        if (collision.gameObject.tag == "spike" && Health > 0 && invincible == false)
         {
-            //take dmg
-            health -= 1;
-            healthBar.fillAmount = 1 / health;
-
-
+			hurt = true;
         }
 
         if (collision.gameObject.tag == "platform")
@@ -94,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
     void ShowGameOver()
     {
-        Transform textbox = _canvasGroup.transform.FindChild("GameOver");
+		Debug.Log("inside gameover");
         textbox.gameObject.SetActive(true);
         //Destroy (_player);
         //destroy world gen?
@@ -102,33 +148,27 @@ public class PlayerController : MonoBehaviour
 
     void CheckDeath()
     {
+		if (_dead) 
+		{
+			ShowGameOver();
+		}
+        if (Health == 0)
+        {
+			ShowGameOver();
+            _dead = true;
+
+        }           
 
         if (_player.transform.position.y <= -6)
         {
-
-            //Call gameover
-            ShowGameOver();
+            //TODO: Call gameover
+			ShowGameOver();
+            _canvasGroup.SetActive(true);
             _dead = true;
+
         }
-        if (health == 0)
-        {
-            _dead = true;
-            ShowGameOver();
 
-            if (_player.transform.position.y <= -6)
-            {
-                //TODO: Call gameover
-                _canvasGroup.SetActive(true);
-                _dead = true;
 
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space) && _dead == true)
-            {
-                //just restart scene
-                Application.LoadLevel(Application.loadedLevel);
-            }
-        }
     }
 
     void OnTriggerEnter2D(Collider2D collider)
