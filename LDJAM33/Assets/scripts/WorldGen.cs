@@ -26,10 +26,8 @@ public class WorldGen : MonoBehaviour
     [SerializeField]
     float _offset;
 
-    int _platformLevel = 0;
-
-    float _spawnTimer = 0;
-    float _waitTimer = 2;
+    float _spawnLocation = 0;
+    float _waitLocation = 2;
 
 	// Use this for initialization
 	void Start ()
@@ -48,7 +46,7 @@ public class WorldGen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _spawnTimer += Time.deltaTime;
+        _spawnLocation += Time.deltaTime;
         if (_floorPlatform.ActiveObject.Count != 0 && _floorPlatform.ActiveObject[0].transform.position.x < _spawnEgde.x + _offset + Mathf.Round(_player.transform.position.x))
         {
             _floorPlatform.Despawn(_floorPlatform.ActiveObject[0]);
@@ -68,7 +66,7 @@ public class WorldGen : MonoBehaviour
             _spikes.Despawn(_spikes.ActiveObject[0]);
         }
 
-        if (_spawnTimer >= _waitTimer)
+        if (_spawnLocation + _waitLocation <= _player.transform.position.x)
         {
             CreateObstacle();
         }
@@ -88,14 +86,14 @@ public class WorldGen : MonoBehaviour
                         _platforms.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _offset + -_spawnEgde.x + i + j * 6, _spawnEgde.y + j * 2, 0));
                     }
                 }
-                _waitTimer = 3;
+                _waitLocation = 24;
                 break;
             case 1:
                 for (int j = 0; j < 4; j++)
                 {
                     _spikes.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _offset + -_spawnEgde.x + ((float)j / 2.0f), _spawnEgde.y + 0.84f , 0));
                 }
-                _waitTimer = 1;
+                _waitLocation = 8;
                 break;
             //case 2:
             //    break;
@@ -115,6 +113,6 @@ public class WorldGen : MonoBehaviour
             //    break;
         }
 
-        _spawnTimer = 0;
+        _spawnLocation = _player.transform.position.x;
     }
 }

@@ -2,10 +2,14 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
+    [Header("Game Objects")]
+	public GameObject _player;
+    [SerializeField]
+    GameObject _particles;
 
-	public GameObject player;
-	private Vector2 _force = new Vector2(0,40);
+	private Vector2 _force = new Vector2(0,30);
 	private Rigidbody2D _playerRigidbody;
 	private bool _grounded;
     Camera _gameCamera;
@@ -18,26 +22,20 @@ public class PlayerController : MonoBehaviour {
 
 	void Start ()
     {
-		player = this.gameObject;
+		_player = this.gameObject;
 		_grounded = true;
 		_playerRigidbody = GetComponent<Rigidbody2D> ();
         _gameCamera = Camera.main;
         _playerRigidbody.freezeRotation = true;
 		_dead = false;
 		_powerUped = false;
-
-
-    }
-
-    void FixedUpdate()
-    {
-
     }
 
 	void Update ()
     {
         _gameCamera.transform.position = new Vector3(this.transform.position.x + 6, 0, -10);
-		player.transform.Translate(Vector2.right * _speed * Time.deltaTime);
+        _particles.transform.position = new Vector3(this.transform.position.x + 14, 0, 0);
+		_player.transform.Translate(Vector2.right * _speed * Time.deltaTime);
 		CheckDeath ();
 		if (_powerUped) 
 		{
@@ -65,7 +63,6 @@ public class PlayerController : MonoBehaviour {
         {
             _grounded = false;
             Jump(_force);
-
         }
     }
 
@@ -80,13 +77,11 @@ public class PlayerController : MonoBehaviour {
 
 	void CheckDeath()
 	{
-		if(player.transform.position.y <= -6)
+		if(_player.transform.position.y <= -6)
 		{
-			//Call gameover
+			//TODO: Call gameover
 			_canvasGroup.alpha = 1;
 			_dead = true;
-
-
 		}
 
 		if (Input.GetKeyDown(KeyCode.Space) && _dead == true)
@@ -106,6 +101,6 @@ public class PlayerController : MonoBehaviour {
 
 	void Jump(Vector2 force)
 	{
-		_playerRigidbody.AddForce(force,ForceMode2D.Impulse);
+		_playerRigidbody.AddForce(force, ForceMode2D.Impulse);
 	}
 }
