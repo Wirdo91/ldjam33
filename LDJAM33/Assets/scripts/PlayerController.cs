@@ -2,46 +2,42 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
-{
-    [Header("Game Objects")]
-	public GameObject _player;
-    [SerializeField]
-    GameObject _particles;
+public class PlayerController : MonoBehaviour {
 
-    private Vector2 _force = new Vector2(0, 30);
+	public GameObject player;
+	private Vector2 _force = new Vector2(0,40);
 	private Rigidbody2D _playerRigidbody;
 	private bool _grounded;
     Camera _gameCamera;
 	[SerializeField]
-	private GameObject _canvasGroup;
+	private CanvasGroup _canvasGroup;
 	public float _speed;
 	private bool _dead;
 	public float powerUpTimer = 5;
 	private bool _powerUped;
-	private int health = 3;
-	[SerializeField]
-	private Image healthBar;
-
 
 	void Start ()
     {
-		_player = this.gameObject;
+		player = this.gameObject;
 		_grounded = true;
 		_playerRigidbody = GetComponent<Rigidbody2D> ();
         _gameCamera = Camera.main;
         _playerRigidbody.freezeRotation = true;
 		_dead = false;
 		_powerUped = false;
-		Transform textbox = _canvasGroup.transform.FindChild("GameOver");
-		textbox.gameObject.SetActive(false);
+
 
     }
+
+    void FixedUpdate()
+    {
+
+    }
+
 	void Update ()
     {
         _gameCamera.transform.position = new Vector3(this.transform.position.x + 6, 0, -10);
-        _particles.transform.position = new Vector3(this.transform.position.x + 14, 0, 0);
-		_player.transform.Translate(Vector2.right * _speed * Time.deltaTime);
+		player.transform.Translate(Vector2.right * _speed * Time.deltaTime);
 		CheckDeath ();
 		if (_powerUped) 
 		{
@@ -65,65 +61,37 @@ public class PlayerController : MonoBehaviour
     void LateUpdate()
     {
 
-		Debug.Log (_grounded);
         if (Input.GetKeyDown(KeyCode.Space) && _grounded)
         {
-			Jump(_force);
             _grounded = false;
+            Jump(_force);
+
         }
     }
 
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-
-		if (collision.gameObject.tag == "spike" && health > 0) 
-		{
-			//take dmg
-			health -= 1;
-			healthBar.fillAmount = 1/health;
-			
-			
-		}
-
 		if (collision.gameObject.tag == "platform")
 		{
 			_grounded = true;
 		}
 	}
 
-	void ShowGameOver()
-	{
-		Transform textbox = _canvasGroup.transform.FindChild("GameOver");
-		textbox.gameObject.SetActive(true);
-		//Destroy (_player);
-		//destroy world gen?
-	}
-
 	void CheckDeath()
 	{
-
-		if (_player.transform.position.y <= -6) {
-
+		if(player.transform.position.y <= -6)
+		{
 			//Call gameover
-			ShowGameOver ();
+			_canvasGroup.alpha = 1;
 			_dead = true;
+
+
 		}
-		if (health == 0) {
-			_dead = true;
-			ShowGameOver ();
 
-			if (_player.transform.position.y <= -6) {
-				//TODO: Call gameover
-				_canvasGroup.SetActive(true);
-				_dead = true;
-
-			}
-
-			if (Input.GetKeyDown (KeyCode.Space) && _dead == true) {
-				//just restart scene
-				Application.LoadLevel (Application.loadedLevel);		
-			}
+		if (Input.GetKeyDown(KeyCode.Space) && _dead == true)
+		{
+			Application.LoadLevel("RunnerScene");
 		}
 	}
 
@@ -138,6 +106,6 @@ public class PlayerController : MonoBehaviour
 
 	void Jump(Vector2 force)
 	{
-		_playerRigidbody.AddForce(force, ForceMode2D.Impulse);
+		_playerRigidbody.AddForce(force,ForceMode2D.Impulse);
 	}
 }
