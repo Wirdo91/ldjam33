@@ -24,6 +24,9 @@ public class BackgroundController : MonoBehaviour {
     Queue<Transform> _middleBacks;
 
     Transform tmp_middle;
+
+    Vector3[] _initialForBacks;
+    Vector3[] _initialMiddleBacks;
 	
     void Start()
     {
@@ -53,6 +56,32 @@ public class BackgroundController : MonoBehaviour {
             _secondForBack.GetComponent<SpriteRenderer>().sortingOrder -= i;
 
             _forBacks.Enqueue(_secondForBack);
+        }
+
+        _initialMiddleBacks = new Vector3[_middleBacks.Count];
+        for (int i = 0; i < _middleBacks.Count; i++)
+        {
+            _initialMiddleBacks[i] = _middleBacks.ToArray()[i].localPosition;
+        }
+
+        _initialForBacks = new Vector3[_forBacks.Count];
+        for (int i = 0; i < _forBacks.Count; i++)
+        {
+            _initialForBacks[i] = _forBacks.ToArray()[i].localPosition;
+        }
+    }
+    [SerializeField]
+    bool reset = false;
+    void ResetPos()
+    {
+        for (int i = 0; i < _middleBacks.Count; i++)
+        {
+            _middleBacks.ToArray()[i].localPosition = _initialMiddleBacks[i];
+        }
+
+        for (int i = 0; i < _forBacks.Count; i++)
+        {
+            _forBacks.ToArray()[i].localPosition = _initialForBacks[i];
         }
     }
 
@@ -84,6 +113,12 @@ public class BackgroundController : MonoBehaviour {
         foreach (Transform forBack in _forBacks.ToArray())
         {
             forBack.position += new Vector3(_forMoveSpeed * player._speed * Time.deltaTime, 0, 0);
+        }
+
+        if (reset)
+        {
+            ResetPos();
+            reset = false;
         }
     }
 }
