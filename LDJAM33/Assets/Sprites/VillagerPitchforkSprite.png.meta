@@ -1,9 +1,13 @@
 fileFormatVersion: 2
 guid: 92d2696b2cb637d478f977fdf7636079
-timeCreated: 1440351183
+timeCreated: 1440358170
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: VillagerPitchforkSprite_0
+    21300002: VillagerPitchforkSprite_1
+    21300004: VillagerPitchforkSprite_2
+    21300006: VillagerPitchforkSprite_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,25 +34,65 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: -1
-  nPOTScale: 1
+    wrapMode: 1
+  nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
-  textureType: -1
+  alphaIsTransparency: 1
+  textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: VillagerPitchforkSprite_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 18
+        width: 43
+        height: 46
+      alignment: 9
+      pivot: {x: .458710343, y: .448537588}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: VillagerPitchforkSprite_1
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 18
+        width: 37
+        height: 49
+      alignment: 9
+      pivot: {x: .42535606, y: .415454477}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: VillagerPitchforkSprite_2
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 18
+        width: 43
+        height: 53
+      alignment: 9
+      pivot: {x: .477061421, y: .38089183}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: VillagerPitchforkSprite_3
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 17
+        width: 35
+        height: 51
+      alignment: 9
+      pivot: {x: .421090692, y: .426506191}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 
