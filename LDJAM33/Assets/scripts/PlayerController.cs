@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject _particles;
 
+    private Vector2 _force = new Vector2(30, 0);
 	private Rigidbody2D _playerRigidbody;
 	private bool _grounded;
     Camera _gameCamera;
@@ -76,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
 	void CheckDeath()
 	{
-		if(player.transform.position.y <= -6)
+		if(_player.transform.position.y <= -6)
 		{
 			//TODO: Call gameover
 			_canvasGroup.alpha = 1;
