@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
 	public GameObject player;
-	private Vector2 _force = new Vector2(0,40);
+	private Vector2 _force = new Vector2(0,50);
 	private Rigidbody2D _playerRigidbody;
 	private bool _grounded;
     Camera _gameCamera;
