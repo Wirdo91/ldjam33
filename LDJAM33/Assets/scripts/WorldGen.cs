@@ -15,6 +15,10 @@ public class WorldGen : MonoBehaviour
     GameObject _spike;
     [SerializeField]
     GameObject _villager;
+    [SerializeField]
+    GameObject _sawblade;
+    [SerializeField]
+    GameObject _movingSawBlade;
 	[SerializeField]
 	int _powerUpSpawnTimer = 2;
 	[SerializeField]
@@ -25,6 +29,8 @@ public class WorldGen : MonoBehaviour
     ObjectPool _platforms;
     ObjectPool _spikes;
     ObjectPool _villagers;
+    ObjectPool _sawblades;
+    ObjectPool _movingSawBlades;
 
     [Space(1)]
     [Header("Player and Offset")]
@@ -49,6 +55,8 @@ public class WorldGen : MonoBehaviour
         _platforms = new ObjectPool(_platform, this.transform);
         _spikes = new ObjectPool(_spike, this.transform);
         _villagers = new ObjectPool(_villager, this.transform);
+        _sawblades = new ObjectPool(_sawblade, this.transform);
+        _movingSawBlades = new ObjectPool(_movingSawBlade, this.transform);
 
 
         for (int i = (int)(_spawnEgde.x / _floorOffset); i < (-_spawnEgde.x * 2.0f) / _floorOffset; i++)
@@ -87,9 +95,22 @@ public class WorldGen : MonoBehaviour
             _spikes.Despawn(_spikes.ActiveObject[0]);
         }
 
+        //Villages
         if (_villagers.ActiveObject.Count != 0 && _villagers.ActiveObject[0].transform.position.x < _spawnEgde.x + _cameraOffset + Mathf.Round(_player.transform.position.x))
         {
             _villagers.Despawn(_villagers.ActiveObject[0]);
+        }
+
+        //Sawblade
+        if (_sawblades.ActiveObject.Count != 0 && _sawblades.ActiveObject[0].transform.position.x < _spawnEgde.x + _cameraOffset + Mathf.Round(_player.transform.position.x))
+        {
+            _sawblades.Despawn(_sawblades.ActiveObject[0]);
+        }
+
+        //MovingSawblade
+        if (_movingSawBlades.ActiveObject.Count != 0 && _movingSawBlades.ActiveObject[0].transform.position.x < _spawnEgde.x + _cameraOffset + Mathf.Round(_player.transform.position.x))
+        {
+            _movingSawBlades.Despawn(_movingSawBlades.ActiveObject[0]);
         }
 
         if (_spawnTimer >= _waitTimer)
@@ -100,7 +121,7 @@ public class WorldGen : MonoBehaviour
 
     void CreateObstacle()
     {
-        int gen = RandomGen.Next(0, 4);
+        int gen = RandomGen.Next(4, 6);
 		_powerUpSpawnTimer--;
         switch (gen) {
 		case 0:
@@ -133,13 +154,13 @@ public class WorldGen : MonoBehaviour
                     {
                         if (j == 2)
                         {
-                            _spikes.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + i + j * 6, _spawnEgde.y + 3f, 0));
+                            _spikes.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + i + j * 6, _spawnEgde.y + 3.2f, 0));
                         }
                         else
                         {
-                            _spikes.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + i + j * 6, _spawnEgde.y + 2f, 0), Quaternion.Euler(0, 0, 180));
+                            _spikes.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + i + j * 6, _spawnEgde.y + 2.3f, 0), Quaternion.Euler(0, 0, 180));
                         }
-                        _platforms.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + i + j * 6, _spawnEgde.y + 2.5f, 0));
+                        _platforms.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + i + j * 6, _spawnEgde.y + 2.8f, 0));
                     }
                 }
                 _waitTimer = 3;
@@ -148,10 +169,14 @@ public class WorldGen : MonoBehaviour
                 _villagers.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + (-_spawnEgde.x * 2), _spawnEgde.y + 0.84f, 0)).GetComponent<IdleVillager>().Init();
                 _waitTimer = 1;
                 break;
-            //case 4:
-            //    break;
-            //case 5:
-            //    break;
+            case 4:
+                _sawblades.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + (-_spawnEgde.x * 2), _spawnEgde.y + 0.5f, 0), Quaternion.Euler(0, 180, 0));
+                _waitTimer = 1;
+                break;
+            case 5:
+                _movingSawBlades.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + (-_spawnEgde.x * 2), _spawnEgde.y + 3f, 0));
+                _waitTimer = 1;
+                break;
             //case 6:
             //    break;
             //case 7:
