@@ -9,5 +9,10 @@ public class WeaponMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         this.transform.Translate(Vector2.right * _speed * Time.deltaTime);
+
+        if (!this.GetComponent<SpriteRenderer>().isVisible)
+        {
+            Destroy(this);
+        }
 	}
 }
