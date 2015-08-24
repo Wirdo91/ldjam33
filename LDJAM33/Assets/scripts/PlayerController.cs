@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         _gameCamera.transform.position = new Vector3(this.transform.position.x + 6, 0, -10);
-        _particles.transform.position = new Vector3(this.transform.position.x + 14, 0, 0);
+        _particles.transform.position = new Vector3(this.transform.position.x + 20 , 0, 0);
         _player.transform.Translate(Vector2.right * _speed * Time.deltaTime);
         CheckDeath();
         if (_powerUped)
@@ -64,8 +64,6 @@ public class PlayerController : MonoBehaviour
 
     void LateUpdate()
     {
-
-        Debug.Log(_grounded);
         if (Input.GetKeyDown(KeyCode.Space) && _grounded)
         {
             Jump(_force);
