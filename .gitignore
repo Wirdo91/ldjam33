@@ -63,13 +63,15 @@ build/
 # Unity generated #
 # =============== #
 Temp/
+Obj/
+UnityGenerated/
 Library/
+Assets/AssetStoreTools*
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
 ExportedObj/
-obj/
 *.svd
 *.userprefs
 *.csproj

@@ -1,0 +1,176 @@
+fileFormatVersion: 2
+guid: 6a296bedf47db9049a9cf945f9fdd155
+timeCreated: 1440424323
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Death_0
+    21300002: Death_1
+    21300004: Death_2
+    21300006: Death_3
+    21300008: Death_4
+    21300010: Death_5
+    21300012: Death_6
+    21300014: Death_7
+    21300016: Death_8
+    21300018: Death_9
+    21300020: Death_10
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Death_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 7
+        width: 23
+        height: 50
+      alignment: 9
+      pivot: {x: .493306279, y: .349125594}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Death_1
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 9
+        width: 21
+        height: 43
+      alignment: 9
+      pivot: {x: .5, y: .37110883}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Death_2
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 7
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: .506997883, y: .431576252}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Death_3
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 7
+        width: 21
+        height: 39
+      alignment: 9
+      pivot: {x: .492668867, y: .389469445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Death_4
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 7
+        width: 31
+        height: 39
+      alignment: 9
+      pivot: {x: .504966021, y: .40525955}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Death_5
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 7
+        width: 31
+        height: 37
+      alignment: 9
+      pivot: {x: .5, y: .429264694}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Death_6
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 7
+        width: 22
+        height: 34
+      alignment: 9
+      pivot: {x: .479006678, y: .436607361}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Death_7
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 7
+        width: 22
+        height: 35
+      alignment: 9
+      pivot: {x: .479005992, y: .420823932}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Death_8
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 7
+        width: 22
+        height: 34
+      alignment: 9
+      pivot: {x: .472008437, y: .418495178}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Death_9
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 7
+        width: 22
+        height: 35
+      alignment: 9
+      pivot: {x: .486003518, y: .412026584}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Death_10
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 7
+        width: 22
+        height: 34
+      alignment: 9
+      pivot: {x: .479006678, y: .42755127}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

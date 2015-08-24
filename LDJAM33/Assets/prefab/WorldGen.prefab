@@ -39,13 +39,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75fb296f06e5f0e48b018f2d87b9fe73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _floorPlatform: {fileID: 0}
   _platform: {fileID: 118332, guid: a40ab1eda6d36ff429c1e6f3097961af, type: 2}
   _spike: {fileID: 181300, guid: b07bfc43ca649c94c9f2eb5f0148933e, type: 2}
   _player: {fileID: 134912, guid: 174dcb36425db15448d67fe4d15f7b07, type: 2}
   _spawnEgde: {x: -10, y: -5}
-  _cameraOffset: 0
-  _floorOffset: 0
+  _offset: 6
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
