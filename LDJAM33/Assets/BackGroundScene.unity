@@ -188,6 +188,19 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 115086, guid: 72a033c87c8242f4abf0ede883236bc4, type: 2}
   m_PrefabInternal: {fileID: 357370073}
+--- !u!61 &314215390
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 314215386}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: .200000003, y: .400000006}
 --- !u!1001 &357370073
 Prefab:
   m_ObjectHideFlags: 0
@@ -247,7 +260,24 @@ Prefab:
       propertyPath: _speed
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6167714, guid: 72a033c87c8242f4abf0ede883236bc4, type: 2}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167714, guid: 72a033c87c8242f4abf0ede883236bc4, type: 2}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167714, guid: 72a033c87c8242f4abf0ede883236bc4, type: 2}
+      propertyPath: m_Size.x
+      value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167714, guid: 72a033c87c8242f4abf0ede883236bc4, type: 2}
+      propertyPath: m_Size.y
+      value: .200000003
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6167714, guid: 72a033c87c8242f4abf0ede883236bc4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 72a033c87c8242f4abf0ede883236bc4, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &499012123
@@ -741,7 +771,7 @@ Prefab:
     - target: {fileID: 11419998, guid: a7cc3cdc3db381040866858899bc6a2b, type: 2}
       propertyPath: _platform
       value: 
-      objectReference: {fileID: 118332, guid: 969ebd4e1acb6eb4792a0c435c6660e8, type: 2}
+      objectReference: {fileID: 120972, guid: 142a8b2134c15ad44b89da1765ec5d5d, type: 2}
     - target: {fileID: 11419998, guid: a7cc3cdc3db381040866858899bc6a2b, type: 2}
       propertyPath: _floorPlatform
       value: 
@@ -766,6 +796,10 @@ Prefab:
       propertyPath: _villager
       value: 
       objectReference: {fileID: 187688, guid: 3aa40c034fca0984894096c8e438e03a, type: 2}
+    - target: {fileID: 11419998, guid: a7cc3cdc3db381040866858899bc6a2b, type: 2}
+      propertyPath: _cameraOffset
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7cc3cdc3db381040866858899bc6a2b, type: 2}
   m_IsPrefabParent: 0

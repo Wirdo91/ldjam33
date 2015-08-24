@@ -113,7 +113,7 @@ public class WorldGen : MonoBehaviour
 			if (_powerUpSpawnTimer == 0) {
 				int place = RandomGen.Next (1, 4);
 				int index = RandomGen.Next(0, _powerUps.Length);
-				Instantiate (_powerUps[index], new Vector3 (Mathf.Round (_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + 2 + place * 6, _spawnEgde.y + place * 1.5f + 2, 0),Quaternion.identity);
+				Instantiate (_powerUps[index], new Vector3 (Mathf.Round (_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + 2 + place * 8, _spawnEgde.y + place * 1.5f + 2, 0),Quaternion.identity);
 
 				_powerUpSpawnTimer = RandomGen.Next (0, 3);
 			}
@@ -122,9 +122,9 @@ public class WorldGen : MonoBehaviour
             case 1:
                 for (int j = 0; j < 4; j++)
                 {
-                    _spikes.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + ((float)j / 2.0f), _spawnEgde.y + 0.84f , 0));
+                    _spikes.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + (-_spawnEgde.x * 2) + ((float)j / 2.0f), _spawnEgde.y + 0.84f , 0));
                 }
-                _waitTimer = 1;
+                _waitTimer = 1.5f;
                 break;
             case 2:
                 for (int i = 0; i < 3; i++)
@@ -144,9 +144,8 @@ public class WorldGen : MonoBehaviour
                 }
                 _waitTimer = 3;
                 break;
-
             case 3:
-                    _villagers.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x, _spawnEgde.y + 0.84f, 0)).GetComponent<IdleVillager>().Init();
+                _villagers.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + (-_spawnEgde.x * 2), _spawnEgde.y + 0.84f, 0)).GetComponent<IdleVillager>().Init();
                 _waitTimer = 1;
                 break;
             //case 4:
