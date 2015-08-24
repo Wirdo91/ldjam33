@@ -15,18 +15,54 @@ public class PlayerController : MonoBehaviour
     Camera _gameCamera;
     [SerializeField]
     private GameObject _canvasGroup;
-    public float _speed;
-    private bool _dead = true;
+    private float _speed;
+    private bool _dead;
+	private int _powerUpType;
     public float powerUpTimer = 5;
     private bool _powerUped;
     private float _health = 3;
     [SerializeField]
     private Image healthBar;
-	private bool invincible;
-	private float invincibleTimer = 2;
+	private bool _invincible;
+	private float _invincibleTimer = 2;
 	private bool hurt;
 	private float maxHealth = 3;
-	private Transform restartText;
+
+	public bool Invincible {
+		get {
+			return _invincible;
+		}
+		set {
+			_invincible = value;
+		}
+	}
+
+	public float Speed {
+		get {
+			return _speed;
+		}
+		set {
+			_speed = value;
+		}
+	}
+
+	public int PowerUpType {
+		get{
+			return _powerUpType;
+		}
+		set{
+			_powerUpType = value;
+		}
+	}
+
+	public bool Dead {
+		get{
+			return _dead;
+		}
+		set{
+			_dead = value;
+		}
+	}
 
 	public float Health {
 		get{
@@ -43,28 +79,20 @@ public class PlayerController : MonoBehaviour
 
 		}
 	}
-	Transform textbox;
     void Start()
     {
 
 		//show menu
 		//do not walk
-		_speed = 0;
 		_player = this.gameObject;
         _grounded = true;
         _playerRigidbody = GetComponent<Rigidbody2D>();
         _gameCamera = Camera.main;
         _playerRigidbody.freezeRotation = true;
-        _dead = false;
         _powerUped = false;
 
         
-		restartText = _canvasGroup.transform.FindChild("Restart");
-		restartText.gameObject.SetActive (true);
-		if (Input.GetKeyDown (KeyCode.Space)) 
-		{
-			_canvasGroup.SetActive(false);
-		}
+
 
     }
     void Update()
@@ -82,7 +110,7 @@ public class PlayerController : MonoBehaviour
 			return;
 		}
 		
-		_gameCamera.transform.position = new Vector3(this.transform.position.x + 6, 0, -10);
+		_gameCamera.transform.position = new Vector3(this.transform.position.x + 4, -0.5f, -10);
         _particles.transform.position = new Vector3(this.transform.position.x + 14, 0, 0);
         _player.transform.Translate(Vector2.right * _speed * Time.deltaTime);
         
@@ -95,14 +123,14 @@ public class PlayerController : MonoBehaviour
             _speed = 10;
         }
 
-		if (invincible == true) 
+		if (_invincible == true) 
 		{
-			invincibleTimer -= Time.deltaTime;
+			_invincibleTimer -= Time.deltaTime;
 
 		}
-		if (invincibleTimer <= 0) 
+		if (_invincibleTimer <= 0) 
 		{
-			invincible = false;
+			_invincible = false;
 		}
 
         if (this._playerRigidbody.velocity.y > 0)
@@ -130,7 +158,7 @@ public class PlayerController : MonoBehaviour
 			//Just be invicible during 2 secs
 			Health -= 1;
 			healthBar.fillAmount = Health / maxHealth;
-			invincible = true;
+			_invincible = true;
 			hurt = false;
 		}
 		
@@ -139,7 +167,7 @@ public class PlayerController : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "spike" && Health > 0 && invincible == false)
+        if (collision.gameObject.tag == "spike" && Health > 0 && _invincible == false)
         {
 			hurt = true;
         }
@@ -153,6 +181,7 @@ public class PlayerController : MonoBehaviour
     void ShowGameOver()
     {
         _canvasGroup.SetActive(true);
+		FindObjectOfType<BackgroundController> ().enabled = false;
         //Destroy (_player);
         //destroy world gen?
     }
@@ -186,6 +215,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collider.GetComponent<Powerup>() != null)
         {
+			//se om det er invici eller speed up
+			this.PowerUpType = 1;
             collider.GetComponent<Powerup>().affect(this);
             _powerUped = true;
         }

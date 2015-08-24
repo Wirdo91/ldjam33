@@ -17,7 +17,21 @@ public class Powerup : MonoBehaviour {
 	{
 		//Kun efter noget tid...
 
-		player._speed += 10;
+
+
+		switch (player.PowerUpType) {
+		case(1):
+			//speedup
+			player.Speed += 10;
+			break;
+		case(2):
+			//invincibility
+			player.Invincible = true;
+			break;
+		default:
+		
+			break;
+		}
 
 		Destroy(this.gameObject);
 	}

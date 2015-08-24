@@ -21,16 +21,16 @@ public class AngryMob : MonoBehaviour {
 	void Start () {
         _player = FindObjectOfType<PlayerController>();
 
-        this.transform.position = new Vector3((_player.transform.position.x - 3), -4, 0);
-        _baseSpeed = _player._speed;
+        this.transform.position = new Vector3((_player.transform.position.x - 3.5f), -4.3f, 0);
+        _baseSpeed = _player.Speed;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-        if (_player._speed == _baseSpeed)
+        if (_player.Speed == _baseSpeed)
             this.transform.Translate(Vector3.right * _baseSpeed * Time.deltaTime);
         else
-            this.transform.Translate(Vector3.right * (_player._speed * .75f) * Time.deltaTime);
+            this.transform.Translate(Vector3.right * (_player.Speed * .75f) * Time.deltaTime);
 
         if (_frenzied)
         {

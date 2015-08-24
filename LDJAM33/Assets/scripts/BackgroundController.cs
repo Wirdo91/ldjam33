@@ -72,7 +72,7 @@ public class BackgroundController : MonoBehaviour {
     }
     [SerializeField]
     bool reset = false;
-    void ResetPos()
+    public void Reset()
     {
         for (int i = 0; i < _middleBacks.Count; i++)
         {
@@ -98,7 +98,7 @@ public class BackgroundController : MonoBehaviour {
         }
         foreach (Transform middleBack in _middleBacks.ToArray())
         {
-            middleBack.position += new Vector3(_middleMoveSpeed * player._speed * Time.deltaTime, 0, 0);
+            middleBack.position += new Vector3(_middleMoveSpeed * player.Speed * Time.deltaTime, 0, 0);
         }
 
         if (_forBacks.Peek().localPosition.x < - 20)
@@ -112,12 +112,12 @@ public class BackgroundController : MonoBehaviour {
 
         foreach (Transform forBack in _forBacks.ToArray())
         {
-            forBack.position += new Vector3(_forMoveSpeed * player._speed * Time.deltaTime, 0, 0);
+            forBack.position += new Vector3(_forMoveSpeed * player.Speed * Time.deltaTime, 0, 0);
         }
 
         if (reset)
         {
-            ResetPos();
+            Reset();
             reset = false;
         }
     }
