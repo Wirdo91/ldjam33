@@ -368,7 +368,7 @@ Prefab:
     - target: {fileID: 11419998, guid: a7cc3cdc3db381040866858899bc6a2b, type: 2}
       propertyPath: _platform
       value: 
-      objectReference: {fileID: 120972, guid: 5001fe4ea36e0b849af98f5668cdfe3c, type: 2}
+      objectReference: {fileID: 120972, guid: 142a8b2134c15ad44b89da1765ec5d5d, type: 2}
     - target: {fileID: 11419998, guid: a7cc3cdc3db381040866858899bc6a2b, type: 2}
       propertyPath: _player
       value: 
