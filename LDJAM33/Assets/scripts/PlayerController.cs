@@ -120,20 +120,32 @@ public class PlayerController : MonoBehaviour
             powerUpTimer -= Time.deltaTime;
         }
         if (powerUpTimer <= 0)
-        {
-            _speed = 10;
+		{
+			switch (_powerUpType) {
+			case(1):
+				//reset speed up
+				this.Speed = 10;
+				break;
+			case(2):
+				//reset invincibility
+				Invincible = false;
+				break;
+			case(3):
+				//reset slowdown
+				this.Speed = 10;
+				break;
+			case(4):
+				//reset giant mode
+				this.transform.localScale = new Vector3(2, 2, 0);
+				this.transform.localScale = new Vector3(2, 2, 0);
+				break;
+			default:
+			break;
+			}
+			//reset timer when the power up is done
+			powerUpTimer = 5;
+			_powerUped = false;
         }
-
-		if (Invincible == true) 
-		{
-			_invincibleTimer -= Time.deltaTime;
-
-		}
-		if (_invincibleTimer <= 0) 
-		{
-			Invincible = false;
-			_invincibleTimer = 2;
-		}
 
         if (this._playerRigidbody.velocity.y > 0)
         {
@@ -150,7 +162,7 @@ public class PlayerController : MonoBehaviour
 			Health -= 1;
 			healthBar.fillAmount = Health / maxHealth;
 			Invincible = true;
-			Debug.Log("invis in last update" + Invincible);
+			_powerUped = true;
 			hurt = false;
 		}
 
@@ -220,7 +232,7 @@ public class PlayerController : MonoBehaviour
         if (collider.GetComponent<Powerup>() != null)
         {
 			//se om det er invici eller speed up
-			this.PowerUpType = 1;
+			this.PowerUpType = 4;
             collider.GetComponent<Powerup>().affect(this);
             _powerUped = true;
         }
