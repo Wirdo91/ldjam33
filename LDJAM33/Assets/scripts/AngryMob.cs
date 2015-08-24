@@ -32,28 +32,23 @@ public class AngryMob : MonoBehaviour {
 		_speed = _baseSpeed;
 	}
 
+    float debugDistance;
 	// Update is called once per frame
 	void Update () {
-        if (_player.Speed == _baseSpeed && !behind)
-        {
-            this.transform.Translate(Vector3.right * _speed * Time.deltaTime);
-        }
-        else if (behind)
-        {
-            this.transform.Translate(Vector3.right * (_player.Speed * .75f) * Time.deltaTime);
-        }
+        this.transform.Translate(Vector3.right * _speed * Time.deltaTime);
 
         if (_player.Speed > _baseSpeed)
         {
-			_speed = _player.Speed*.75f;
+			_speed = _player.Speed * .75f;
             behind = true;
         }
-        else
+        else if (_player.transform.position.x - this.transform.position.x <= _baseDistance)
         {
 			_speed = _baseSpeed;
             behind = false;
         }
 
+        debugDistance = _player.transform.position.x - this.transform.position.x;
 
         if (_frenzied)
         {
