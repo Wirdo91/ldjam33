@@ -66,13 +66,18 @@ public class Powerup : MonoBehaviour {
 			break;
 		case(4):
 			//Giant mode
-			player.transform.localScale += new Vector3(4, 4, 0);
-			player.transform.localScale += new Vector3(4, 4, 0);
+			player.transform.localScale = new Vector3(4, 4, 0);
+			break;
+
+		case(5):
+			//get health back
+			player.Health += 1;
 			break;
 		default:
 		
 			break;
 		}
+
 
 		Destroy(this.gameObject);
 	}
