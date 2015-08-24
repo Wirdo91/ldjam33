@@ -124,14 +124,15 @@ public class PlayerController : MonoBehaviour
             _speed = 10;
         }
 
-		if (_invincible == true) 
+		if (Invincible == true) 
 		{
 			_invincibleTimer -= Time.deltaTime;
 
 		}
 		if (_invincibleTimer <= 0) 
 		{
-			_invincible = false;
+			Invincible = false;
+			_invincibleTimer = 2;
 		}
 
         if (this._playerRigidbody.velocity.y > 0)
@@ -142,6 +143,17 @@ public class PlayerController : MonoBehaviour
         {
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), false);
         }
+
+		if (hurt && !Invincible) 
+		{
+			//take dmg
+			Health -= 1;
+			healthBar.fillAmount = Health / maxHealth;
+			Invincible = true;
+			Debug.Log("invis in last update" + Invincible);
+			hurt = false;
+		}
+
 		CheckDeath();
     }
 
@@ -152,23 +164,13 @@ public class PlayerController : MonoBehaviour
             Jump(_force);
             _grounded = false;
         }
-
-		if (hurt) 
-		{
-			//take dmg
-			//Just be invicible during 2 secs
-			Health -= 1;
-			healthBar.fillAmount = Health / maxHealth;
-			_invincible = true;
-			hurt = false;
-		}
 		
 	}
 	
 	void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "spike" && Health > 0 && _invincible == false)
+        if (collision.gameObject.tag == "spike" && Health > 0 && Invincible == false)
         {
 			hurt = true;
         }
@@ -182,6 +184,7 @@ public class PlayerController : MonoBehaviour
     void ShowGameOver()
     {
         _canvasGroup.SetActive(true);
+		_canvasGroup.transform.FindChild ("GameOver").gameObject.SetActive (true);
 		FindObjectOfType<BackgroundController> ().enabled = false;
         //Destroy (_player);
         //destroy world gen?
