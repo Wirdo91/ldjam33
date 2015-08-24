@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 	private float _invincibleTimer = 2;
 	private bool hurt;
 	private float maxHealth = 3;
+	private Animator _animator;
 
 	public bool Invincible {
 		get {
@@ -91,6 +92,7 @@ public class PlayerController : MonoBehaviour
         _gameCamera = Camera.main;
         _playerRigidbody.freezeRotation = true;
         _powerUped = false;
+		_animator = GetComponent<Animator> ();
 
         
 
@@ -135,6 +137,11 @@ public class PlayerController : MonoBehaviour
 			_invincibleTimer = 2;
 		}
 
+		if(gameObject.transform.position.y > -3)
+		{
+			_animator.SetTrigger("IsFalling");
+		}
+
         if (this._playerRigidbody.velocity.y > 0)
         {
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), true);
@@ -177,6 +184,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.tag == "platform")
         {
+			_animator.SetTrigger("NotFalling");
             _grounded = true;
         }
     }
@@ -217,6 +225,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+
         if (collider.GetComponent<Powerup>() != null)
         {
 			//se om det er invici eller speed up
@@ -236,6 +245,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump(Vector2 force)
     {
+		_animator.SetTrigger ("IsJumping");
         _playerRigidbody.AddForce(force, ForceMode2D.Impulse);
     }
 }
