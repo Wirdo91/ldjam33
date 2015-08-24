@@ -796,6 +796,10 @@ Prefab:
       propertyPath: _villager
       value: 
       objectReference: {fileID: 187688, guid: 3aa40c034fca0984894096c8e438e03a, type: 2}
+    - target: {fileID: 11419998, guid: a7cc3cdc3db381040866858899bc6a2b, type: 2}
+      propertyPath: _cameraOffset
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7cc3cdc3db381040866858899bc6a2b, type: 2}
   m_IsPrefabParent: 0

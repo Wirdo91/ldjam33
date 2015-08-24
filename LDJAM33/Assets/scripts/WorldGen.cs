@@ -100,6 +100,7 @@ public class WorldGen : MonoBehaviour
 
     void CreateObstacle()
     {
+        int gen = RandomGen.Next(0, 4);
 		_powerUpSpawnTimer--;
         switch (gen) {
 		case 0:
@@ -144,7 +145,7 @@ public class WorldGen : MonoBehaviour
                 _waitTimer = 3;
                 break;
             case 3:
-                    _villagers.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x, _spawnEgde.y + 0.84f, 0)).GetComponent<IdleVillager>().Init();
+                _villagers.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + (-_spawnEgde.x * 2), _spawnEgde.y + 0.84f, 0)).GetComponent<IdleVillager>().Init();
                 _waitTimer = 1;
                 break;
             //case 4:
