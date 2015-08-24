@@ -8,12 +8,14 @@ public class WorldGen : MonoBehaviour
     System.Random RandomGen = new System.Random();
     [Header("Spawnable Objects")]
     [SerializeField]
+    GameObject _floorPlatform;
+    [SerializeField]
     GameObject _platform;
     [SerializeField]
     GameObject _spike;
 
 
-    ObjectPool _floorPlatform;
+    ObjectPool _floorPlatforms;
     ObjectPool _platforms;
     ObjectPool _spikes;
 
@@ -24,7 +26,9 @@ public class WorldGen : MonoBehaviour
     [SerializeField]
     Vector2 _spawnEgde;
     [SerializeField]
-    float _offset;
+    float _cameraOffset;
+    [SerializeField]
+    float _floorOffset;
 
     int _platformLevel = 0;
 
@@ -32,38 +36,42 @@ public class WorldGen : MonoBehaviour
     float _waitTimer = 2;
 
 	// Use this for initialization
-	void Start ()
+    void Start()
     {
-        _floorPlatform = new ObjectPool(_platform, this.transform);
+        _floorPlatforms = new ObjectPool(_floorPlatform, this.transform);
         _platforms = new ObjectPool(_platform, this.transform);
         _spikes = new ObjectPool(_spike, this.transform);
 
 
-        for (int i = (int)_spawnEgde.x; i < -_spawnEgde.x + 1; i++)
+        for (int i = (int)(_spawnEgde.x / _floorOffset); i < (-_spawnEgde.x * 2.0f) / _floorOffset; i++)
         {
-            _floorPlatform.Spawn(new Vector3(i + _offset, _spawnEgde.y, 0));
+            _floorPlatforms.Spawn(new Vector3(i * 8, _spawnEgde.y, 0));
         }
-	}
+    }
 
     // Update is called once per frame
     void Update()
     {
         _spawnTimer += Time.deltaTime;
-        if (_floorPlatform.ActiveObject.Count != 0 && _floorPlatform.ActiveObject[0].transform.position.x < _spawnEgde.x + _offset + Mathf.Round(_player.transform.position.x))
+
+        //FLOOR
+        if (_floorPlatforms.ActiveObject.Count != 0 && _floorPlatforms.ActiveObject[0].transform.position.x / 8 + 1 < Mathf.Round(_player.transform.position.x / 8))
         {
-            _floorPlatform.Despawn(_floorPlatform.ActiveObject[0]);
+            _floorPlatforms.Despawn(_floorPlatforms.ActiveObject[0]);
         }
-        if (_floorPlatform.ActiveObject.Count != 0 && Mathf.Round(_player.transform.position.x) + _offset + -_spawnEgde.x > _floorPlatform.ActiveObject[_floorPlatform.ActiveObject.Count - 1].transform.position.x)
+        if (_floorPlatforms.ActiveObject.Count != 0 && Mathf.Round((_player.transform.position.x + _floorOffset) / _floorOffset) >= (_floorPlatforms.ActiveObject[_floorPlatforms.ActiveObject.Count - 1].transform.position.x) / _floorOffset)
         {
-            _floorPlatform.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _offset + -_spawnEgde.x, _spawnEgde.y, 0));
+            _floorPlatforms.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + (_floorOffset * 2) + (_floorOffset / 2), _spawnEgde.y, 0));
         }
 
-        if (_platforms.ActiveObject.Count != 0 && _platforms.ActiveObject[0].transform.position.x < _spawnEgde.x + _offset + Mathf.Round(_player.transform.position.x))
+        //PLATFORMS
+        if (_platforms.ActiveObject.Count != 0 && _platforms.ActiveObject[0].transform.position.x < _spawnEgde.x + Mathf.Round(_player.transform.position.x))
         {
             _platforms.Despawn(_platforms.ActiveObject[0]);
         }
 
-        if (_spikes.ActiveObject.Count != 0 && _spikes.ActiveObject[0].transform.position.x < _spawnEgde.x + _offset + Mathf.Round(_player.transform.position.x))
+        //SPIKES
+        if (_spikes.ActiveObject.Count != 0 && _spikes.ActiveObject[0].transform.position.x < _spawnEgde.x + _cameraOffset + Mathf.Round(_player.transform.position.x))
         {
             _spikes.Despawn(_spikes.ActiveObject[0]);
         }
@@ -83,9 +91,9 @@ public class WorldGen : MonoBehaviour
             case 0:
                 for (int i = 0; i < 3; i++)
                 {
-                    for (int j = 0; j < 4; j++)
+                    for (int j = 1; j < 4; j++)
                     {
-                        _platforms.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _offset + -_spawnEgde.x + i + j * 6, _spawnEgde.y + j * 2, 0));
+                        _platforms.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + i + j * 6, _spawnEgde.y + j * 2, 0));
                     }
                 }
                 _waitTimer = 3;
@@ -93,7 +101,7 @@ public class WorldGen : MonoBehaviour
             case 1:
                 for (int j = 0; j < 4; j++)
                 {
-                    _spikes.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _offset + -_spawnEgde.x + ((float)j / 2.0f), _spawnEgde.y + 0.84f , 0));
+                    _spikes.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + ((float)j / 2.0f), _spawnEgde.y + 0.84f , 0));
                 }
                 _waitTimer = 1;
                 break;

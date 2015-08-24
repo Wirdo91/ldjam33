@@ -1,17 +1,14 @@
 fileFormatVersion: 2
-guid: c507b80dbda409c43b43fad0e67c8fba
-timeCreated: 1440251075
+guid: 9c7e41a0f303ddf40b941f61cb0e9f6c
+timeCreated: 1440368373
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: tiles_8_0
-    21300002: tiles_8_1
-    21300004: tiles_8_2
-    21300006: tiles_8_3
-    21300008: tiles_8_4
-    21300010: tiles_8_5
-    21300012: tiles_8_6
-    21300014: tiles_8_7
+    21300000: Platforms_0
+    21300002: Platforms_1
+    21300004: Platforms_2
+    21300006: Platforms_3
+    21300008: Platforms_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -34,10 +31,10 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 2048
+  textureFormat: -2
+  maxTextureSize: 512
   textureSettings:
-    filterMode: 2
+    filterMode: 0
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -51,91 +48,61 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 90
+  spritePixelsToUnits: 45.9000015
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: tiles_8_0
+    - name: Platforms_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 162
+        x: 0
+        y: 51
         width: 46
-        height: 46
+        height: 48
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tiles_8_1
+    - name: Platforms_1
       rect:
         serializedVersion: 2
-        x: 68
-        y: 193
-        width: 28
-        height: 15
+        x: 49
+        y: 51
+        width: 9
+        height: 17
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tiles_8_2
+    - name: Platforms_2
       rect:
         serializedVersion: 2
-        x: 81
-        y: 160
-        width: 15
-        height: 14
+        x: 61
+        y: 51
+        width: 46
+        height: 17
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tiles_8_3
+    - name: Platforms_3
       rect:
         serializedVersion: 2
-        x: 90
-        y: 144
-        width: 6
-        height: 4
+        x: 110
+        y: 51
+        width: 9
+        height: 17
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tiles_8_4
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 112
-        width: 95
-        height: 12
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tiles_8_5
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 88
-        width: 36
-        height: 21
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tiles_8_6
-      rect:
-        serializedVersion: 2
-        x: 52
-        y: 96
-        width: 43
-        height: 15
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tiles_8_7
+    - name: Platforms_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 94
+        width: 368
+        height: 48
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
