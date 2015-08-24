@@ -90,8 +90,6 @@ public class PlayerController : MonoBehaviour
 		//show menu
 		//do not walk
 
-		Debug.Log ("start playercontroller");
-
 		_player = this.gameObject;
         _grounded = true;
         _playerRigidbody = GetComponent<Rigidbody2D>();
@@ -99,7 +97,6 @@ public class PlayerController : MonoBehaviour
         _playerRigidbody.freezeRotation = true;
         _powerUped = false;
 		_animator = GetComponent<Animator> ();
-		Debug.Log (_animator);
 		_score = 0;
 
     }
@@ -120,7 +117,7 @@ public class PlayerController : MonoBehaviour
 
 		_score = this.transform.position.x;
 		_scoreText = GameObject.Find("score").GetComponent<Text>();
-		_scoreText.text = "score: " + (_score * 10);
+		_scoreText.text = "score: " + ((int)_score * 10);
 
 		_gameCamera.transform.position = new Vector3(this.transform.position.x + 4, -0.5f, -10);
         _particles.transform.position = new Vector3(this.transform.position.x + 14, 0, 0);

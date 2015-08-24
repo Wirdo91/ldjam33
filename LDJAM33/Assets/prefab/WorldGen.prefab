@@ -42,7 +42,7 @@ MonoBehaviour:
   _floorPlatform: {fileID: 197594, guid: a40ab1eda6d36ff429c1e6f3097961af, type: 2}
   _platform: {fileID: 120972, guid: 142a8b2134c15ad44b89da1765ec5d5d, type: 2}
   _spike: {fileID: 181300, guid: b07bfc43ca649c94c9f2eb5f0148933e, type: 2}
-  _villager: {fileID: 0}
+  _villager: {fileID: 187688, guid: 3aa40c034fca0984894096c8e438e03a, type: 2}
   _powerUpSpawnTimer: 2
   _powerUps:
   - {fileID: 190656, guid: e363c868cfe214a49a4b938fde64e1c5, type: 2}
@@ -51,7 +51,7 @@ MonoBehaviour:
   - {fileID: 195702, guid: 30ce6a9f999600e4694704f6ae52d791, type: 2}
   _player: {fileID: 0}
   _spawnEgde: {x: -9, y: -5}
-  _cameraOffset: 0
+  _cameraOffset: 5
   _floorOffset: 8
 --- !u!1001 &100100000
 Prefab:

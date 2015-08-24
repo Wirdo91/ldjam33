@@ -77,7 +77,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 477288}
   - 61: {fileID: 6151646}
-  - 114: {fileID: 11495328}
+  - 114: {fileID: 11486192}
   m_Layer: 0
   m_Name: Angry Mob
   m_TagString: Untagged
@@ -249,7 +249,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 161088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.5, y: -4, z: 10}
+  m_LocalPosition: {x: -8.5, y: -4.30000019, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 421702}
@@ -465,7 +465,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11495328
+--- !u!114 &11486192
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9e434474475b39843aa7b0eee7df75f5
-timeCreated: 1440424483
+timeCreated: 1440450897
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -60,8 +60,8 @@ TextureImporter:
         y: 7
         width: 22
         height: 35
-      alignment: 9
-      pivot: {x: .472982228, y: .394705951}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AfterDeath_1
       rect:
@@ -70,8 +70,8 @@ TextureImporter:
         y: 7
         width: 22
         height: 34
-      alignment: 9
-      pivot: {x: .47838524, y: .426574022}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AfterDeath_2
       rect:
@@ -80,8 +80,8 @@ TextureImporter:
         y: 7
         width: 22
         height: 35
-      alignment: 9
-      pivot: {x: .472982228, y: .415085435}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AfterDeath_3
       rect:
@@ -90,8 +90,8 @@ TextureImporter:
         y: 7
         width: 22
         height: 34
-      alignment: 9
-      pivot: {x: .472982228, y: .426574022}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
