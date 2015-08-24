@@ -37,6 +37,11 @@ public class AngryMob : MonoBehaviour {
 	void Update () {
         this.transform.Translate(Vector3.right * _speed * Time.deltaTime);
 
+		if (Random.Range (0, 100) == 13) 
+		{
+			_frenzied = true;
+		}
+
         if (_player.Speed > _baseSpeed)
         {
 			_speed = _player.Speed * .75f;

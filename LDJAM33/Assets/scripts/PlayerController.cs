@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private Image healthBar;
 	private bool _invincible;
 	private float _invincibleTimer = 2;
-	private bool hurt;
+	private bool _hurt;
 	private float maxHealth = 3;
 	private Animator _animator;
 	private float _score;
@@ -107,13 +107,9 @@ public class PlayerController : MonoBehaviour
 		//walk
 		//the start wait untill you have pressed jump before you start
 
-		if (_dead) {
-			ShowGameOver();
-			if (Input.GetKeyDown(KeyCode.Space))
-			{
-				//just restart scene
-				Application.LoadLevel(Application.loadedLevel);
-			}
+		if (Dead) {
+			CheckDeath();
+
 			return;
 		}
 
@@ -132,6 +128,7 @@ public class PlayerController : MonoBehaviour
 		if (Invincible) 
 		{
 			_invincibleTimer -= Time.deltaTime;
+			_hurt = false;
 		}
 		if (_invincibleTimer <= 0) 
 		{
@@ -183,14 +180,14 @@ public class PlayerController : MonoBehaviour
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), false);
         }
 
-		if (hurt && !Invincible) 
+		if (_hurt && !Invincible) 
 		{
 			//take dmg
 			Health -= 1;
 			healthBar.fillAmount = Health / maxHealth;
 			//be invincible
 			Invincible = true;
-			hurt = false;
+			_hurt = false;
 		}
 
 		CheckDeath();
@@ -211,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.tag == "spike" && Health > 0 && Invincible == false)
         {
-			hurt = true;
+			_hurt = true;
         }
 
         if (collision.gameObject.tag == "platform")
@@ -236,13 +233,18 @@ public class PlayerController : MonoBehaviour
     {
         if (Health == 0)
         {
-            _dead = true;
+            Dead = true;
 
         }  
-		if (_dead) 
+		if (Dead) 
 		{
 			ShowGameOver();
             _animator.SetBool("IsDead", true);
+			if (Input.GetKeyDown(KeyCode.Return))
+			{
+				//just restart scene
+				Application.LoadLevel(Application.loadedLevel);
+			}
 		}         
 
         if (_player.transform.position.y <= -6)
@@ -250,7 +252,7 @@ public class PlayerController : MonoBehaviour
             //TODO: Call gameover
 			ShowGameOver();
             _canvasGroup.SetActive(true);
-            _dead = true;
+            Dead = true;
 
         }
 
@@ -268,13 +270,13 @@ public class PlayerController : MonoBehaviour
             _powerUped = true;
         }
 
-        if (collider.name == "Angry Mob")
-        {
-            Health = 0;
-            _dead = true;
-        }
-        else if (collider.GetComponent<WeaponMove>() != null)
-            hurt = true;
+        if (collider.name == "Angry Mob") {
+			Health = 0;
+			Dead = true;
+		} else if (collider.GetComponent<WeaponMove> () != null) {
+			_hurt = true;
+
+		}
     }
 
     void Jump(Vector2 force)

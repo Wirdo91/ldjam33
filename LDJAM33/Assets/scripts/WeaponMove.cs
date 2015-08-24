@@ -3,8 +3,13 @@ using System.Collections;
 
 public class WeaponMove : MonoBehaviour {
 
-    [SerializeField]
     float _speed = 10f;
+
+	void Start() 
+	{
+		_speed += FindObjectOfType<PlayerController> ().Speed/2;
+
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -12,7 +17,8 @@ public class WeaponMove : MonoBehaviour {
 
         if (!this.GetComponent<SpriteRenderer>().isVisible)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
 	}
+
 }
