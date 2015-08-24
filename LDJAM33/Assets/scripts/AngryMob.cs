@@ -12,6 +12,8 @@ public class AngryMob : MonoBehaviour {
 
     float _baseSpeed;
 
+	float _speed;
+
     [SerializeField]
     GameObject _torchPrefab;
     [SerializeField]
@@ -27,25 +29,28 @@ public class AngryMob : MonoBehaviour {
         this.transform.position = new Vector3((_player.transform.position.x - 3), -4, 0);
         _baseSpeed = _player.Speed;
         _baseDistance = _player.transform.position.x - this.transform.position.x;
+		_speed = _baseSpeed;
 	}
 
 	// Update is called once per frame
 	void Update () {
         if (_player.Speed == _baseSpeed && !behind)
         {
-            this.transform.Translate(Vector3.right * _baseSpeed * Time.deltaTime);
+            this.transform.Translate(Vector3.right * _speed * Time.deltaTime);
         }
         else if (behind)
         {
             this.transform.Translate(Vector3.right * (_player.Speed * .75f) * Time.deltaTime);
         }
 
-        if (_player.transform.position.x - this.transform.position.x > _baseDistance)
+        if (_player.Speed > _baseSpeed)
         {
+			_speed = _player.Speed*.75f;
             behind = true;
         }
         else
         {
+			_speed = _baseSpeed;
             behind = false;
         }
 

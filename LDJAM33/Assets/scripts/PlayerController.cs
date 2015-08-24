@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     Camera _gameCamera;
     [SerializeField]
     private GameObject _canvasGroup;
+	[SerializeField]
     private float _speed;
     private bool _dead;
 	private int _powerUpType;
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
 			_invincible = value;
 		}
 	}
-
+	
 	public float Speed {
 		get {
 			return _speed;
