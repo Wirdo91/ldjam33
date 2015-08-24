@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
 	private bool hurt;
 	private float maxHealth = 3;
 	private Animator _animator;
+	private float _score;
+	private Text _scoreText;
 
 	public bool Invincible {
 		get {
@@ -93,8 +95,10 @@ public class PlayerController : MonoBehaviour
         _playerRigidbody.freezeRotation = true;
         _powerUped = false;
 		_animator = GetComponent<Animator> ();
+		_score = 0;
 
-        
+		
+		
 
 
     }
@@ -112,7 +116,11 @@ public class PlayerController : MonoBehaviour
 			}
 			return;
 		}
-		
+
+		_score = this.transform.position.x;
+		_scoreText = GameObject.Find("score").GetComponent<Text>();
+		_scoreText.text = "score: " + (_score * 10);
+
 		_gameCamera.transform.position = new Vector3(this.transform.position.x + 4, -0.5f, -10);
         _particles.transform.position = new Vector3(this.transform.position.x + 14, 0, 0);
         _player.transform.Translate(Vector2.right * _speed * Time.deltaTime);
@@ -121,6 +129,15 @@ public class PlayerController : MonoBehaviour
         {
             powerUpTimer -= Time.deltaTime;
         }
+		if (Invincible) 
+		{
+			_invincibleTimer -= Time.deltaTime;
+		}
+		if (_invincibleTimer <= 0) 
+		{
+			Invincible = false;
+			_invincibleTimer = 2;
+		}
         if (powerUpTimer <= 0)
 		{
 			switch (_powerUpType) {
@@ -130,6 +147,7 @@ public class PlayerController : MonoBehaviour
 				break;
 			case(2):
 				//reset invincibility
+				Debug.Log("reset invinci");
 				Invincible = false;
 				break;
 			case(3):
@@ -168,8 +186,8 @@ public class PlayerController : MonoBehaviour
 			//take dmg
 			Health -= 1;
 			healthBar.fillAmount = Health / maxHealth;
+			//be invincible
 			Invincible = true;
-			_powerUped = true;
 			hurt = false;
 		}
 
@@ -241,7 +259,7 @@ public class PlayerController : MonoBehaviour
         if (collider.GetComponent<Powerup>() != null)
         {
 			//se om det er invici eller speed up
-			this.PowerUpType = 4;
+			this.PowerUpType = 1;
             collider.GetComponent<Powerup>().affect(this);
             _powerUped = true;
         }
