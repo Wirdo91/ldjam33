@@ -52,6 +52,9 @@ public class WorldGen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_player.GetComponent<PlayerController>().Dead)
+            return;
+
         _spawnTimer += Time.deltaTime;
 
         //FLOOR
@@ -84,7 +87,7 @@ public class WorldGen : MonoBehaviour
 
     void CreateObstacle()
     {
-        int gen = RandomGen.Next(0, 2);
+        int gen = RandomGen.Next(2, 3);
 
         switch (gen)
         {
@@ -93,7 +96,7 @@ public class WorldGen : MonoBehaviour
                 {
                     for (int j = 1; j < 4; j++)
                     {
-                        _platforms.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + i + j * 6, _spawnEgde.y + j * 1.5f, 0));
+                        _platforms.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + i + j * 8, _spawnEgde.y + j * 1.5f, 0));
                     }
                 }
                 _waitTimer = 3;
@@ -105,8 +108,24 @@ public class WorldGen : MonoBehaviour
                 }
                 _waitTimer = 1;
                 break;
-            //case 2:
-            //    break;
+            case 2:
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 1; j < 4; j++)
+                    {
+                        if (j == 2)
+                        {
+                            _spikes.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + i + j * 6, _spawnEgde.y + 3f, 0));
+                        }
+                        else
+                        {
+                            _spikes.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + i + j * 6, _spawnEgde.y + 2f, 0), Quaternion.Euler(0, 0, 180));
+                        }
+                        _platforms.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + i + j * 6, _spawnEgde.y + 2.5f, 0));
+                    }
+                }
+                _waitTimer = 3;
+                break;
             //case 3:
             //    break;
             //case 4:
