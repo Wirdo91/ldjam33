@@ -98,10 +98,6 @@ public class PlayerController : MonoBehaviour
 		_animator = GetComponent<Animator> ();
 		_score = 0;
 
-		
-		
-
-
     }
     void Update()
     {
@@ -203,7 +199,7 @@ public class PlayerController : MonoBehaviour
     void ShowGameOver()
     {
         _canvasGroup.SetActive(true);
-		_canvasGroup.transform.FindChild ("GameOver").gameObject.SetActive (true);
+		_canvasGroup.transform.FindChild ("GameOver").GetComponent<Text> ().enabled = true;
 		FindObjectOfType<BackgroundController> ().enabled = false;
         //Destroy (_player);
         //destroy world gen?
