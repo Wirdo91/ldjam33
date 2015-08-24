@@ -738,6 +738,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11419998, guid: a7cc3cdc3db381040866858899bc6a2b, type: 2}
+      propertyPath: _powerUps.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 468626, guid: a7cc3cdc3db381040866858899bc6a2b, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -782,6 +786,10 @@ Prefab:
       propertyPath: _movingSawBlade
       value: 
       objectReference: {fileID: 105496, guid: a9d9340ec314048449af8e5a1e2085de, type: 2}
+    - target: {fileID: 11419998, guid: a7cc3cdc3db381040866858899bc6a2b, type: 2}
+      propertyPath: _powerUps.Array.data[4]
+      value: 
+      objectReference: {fileID: 153330, guid: 5922b910bacfcfc4d94c1633a7ed3cc1, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7cc3cdc3db381040866858899bc6a2b, type: 2}
   m_IsPrefabParent: 0

@@ -31,9 +31,9 @@ public class Menu : MonoBehaviour {
 			this.gameObject.SetActive(false);
 			
 			Player.Dead = false;
-			FindObjectOfType<BackgroundController> ().Reset();
-
-			FindObjectOfType<AngryMob> ().enabled = true;
+			FindObjectOfType<BackgroundController>().Reset();
+            FindObjectOfType<BackgroundController>().enabled = true;
+			FindObjectOfType<AngryMob>().enabled = true;
 			Player.enabled = true;
 		}
 	}

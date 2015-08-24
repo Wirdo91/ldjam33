@@ -68,7 +68,7 @@ public class WorldGen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_player.GetComponent<PlayerController>().Dead)
+        if (_player.GetComponent<PlayerController>().Dead || !_player.GetComponent<PlayerController>().enabled)
             return;
 
         _spawnTimer += Time.deltaTime;
@@ -121,7 +121,7 @@ public class WorldGen : MonoBehaviour
 
     void CreateObstacle()
     {
-        int gen = RandomGen.Next(5,6);
+        int gen = RandomGen.Next(0,6);
 		_powerUpSpawnTimer--;
         switch (gen) {
 		case 0:
