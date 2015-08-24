@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6a296bedf47db9049a9cf945f9fdd155
-timeCreated: 1440424323
+timeCreated: 1440451153
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -68,7 +68,7 @@ TextureImporter:
         width: 23
         height: 50
       alignment: 9
-      pivot: {x: .493306279, y: .349125594}
+      pivot: {x: .492806047, y: .354395151}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Death_1
       rect:
@@ -78,7 +78,7 @@ TextureImporter:
         width: 21
         height: 43
       alignment: 9
-      pivot: {x: .5, y: .37110883}
+      pivot: {x: .492121369, y: .371109009}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Death_2
       rect:
@@ -87,8 +87,8 @@ TextureImporter:
         y: 7
         width: 22
         height: 36
-      alignment: 9
-      pivot: {x: .506997883, y: .431576252}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Death_3
       rect:
@@ -98,7 +98,7 @@ TextureImporter:
         width: 21
         height: 39
       alignment: 9
-      pivot: {x: .492668867, y: .389469445}
+      pivot: {x: .500000358, y: .436361402}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Death_4
       rect:
@@ -108,7 +108,7 @@ TextureImporter:
         width: 31
         height: 39
       alignment: 9
-      pivot: {x: .504966021, y: .40525955}
+      pivot: {x: .499628872, y: .434957653}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Death_5
       rect:
@@ -118,7 +118,7 @@ TextureImporter:
         width: 31
         height: 37
       alignment: 9
-      pivot: {x: .5, y: .429264694}
+      pivot: {x: .505338132, y: .437393546}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Death_6
       rect:
@@ -127,8 +127,8 @@ TextureImporter:
         y: 7
         width: 22
         height: 34
-      alignment: 9
-      pivot: {x: .479006678, y: .436607361}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Death_7
       rect:
@@ -136,9 +136,9 @@ TextureImporter:
         x: 229
         y: 7
         width: 22
-        height: 35
-      alignment: 9
-      pivot: {x: .479005992, y: .420823932}
+        height: 34
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Death_8
       rect:
@@ -147,8 +147,8 @@ TextureImporter:
         y: 7
         width: 22
         height: 34
-      alignment: 9
-      pivot: {x: .472008437, y: .418495178}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Death_9
       rect:
@@ -156,9 +156,9 @@ TextureImporter:
         x: 293
         y: 7
         width: 22
-        height: 35
-      alignment: 9
-      pivot: {x: .486003518, y: .412026584}
+        height: 34
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Death_10
       rect:
@@ -167,8 +167,8 @@ TextureImporter:
         y: 7
         width: 22
         height: 34
-      alignment: 9
-      pivot: {x: .479006678, y: .42755127}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

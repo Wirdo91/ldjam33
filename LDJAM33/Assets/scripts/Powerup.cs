@@ -61,7 +61,7 @@ public class Powerup : MonoBehaviour {
 			break;
 		case(3):
 			//slowdown
-			player.Speed -= 1;
+			player.Speed -= 0.5f;
 			player.powerUpTimer = 1;
 			break;
 		case(4):
@@ -75,6 +75,12 @@ public class Powerup : MonoBehaviour {
 		}
 
 		Destroy(this.gameObject);
+	}
+
+	static public void SlowDown(PlayerController player)
+	{
+		player.Speed -= 1f;
+		player.powerUpTimer = 1f;
 	}
 
 }

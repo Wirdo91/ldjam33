@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
 
 		//show menu
 		//do not walk
+
 		_player = this.gameObject;
         _grounded = true;
         _playerRigidbody = GetComponent<Rigidbody2D>();
@@ -116,7 +117,7 @@ public class PlayerController : MonoBehaviour
 
 		_score = this.transform.position.x;
 		_scoreText = GameObject.Find("score").GetComponent<Text>();
-		_scoreText.text = "score: " + (_score * 10);
+		_scoreText.text = "score: " + ((int)_score * 10);
 
 		_gameCamera.transform.position = new Vector3(this.transform.position.x + 4, -0.5f, -10);
         _particles.transform.position = new Vector3(this.transform.position.x + 14, 0, 0);
@@ -138,11 +139,16 @@ public class PlayerController : MonoBehaviour
 		}
         if (powerUpTimer <= 0)
 		{
-			_powerUp.Reset(this);
+			if(_powerUp != null){
+				_powerUp.Reset(this);
+			}
+			else
+				Speed = 10;
 			//reset timer when the power up is done
 			powerUpTimer = 5;
 			_powerUped = false;
-        }
+			
+		}
 
 		if(gameObject.transform.position.y > -3)
 		{
@@ -175,7 +181,7 @@ public class PlayerController : MonoBehaviour
 
     void LateUpdate()
     {
-		if (Input.GetKeyDown(KeyCode.Space) && _grounded)
+		if (Input.GetKeyDown(KeyCode.Space) && _grounded && !Dead)
         {
             Jump(_force);
             _grounded = false;
@@ -186,21 +192,22 @@ public class PlayerController : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "spike" && Health > 0 && Invincible == false)
-        {
-			_hurt = true;
-        }
 
         if (collision.gameObject.tag == "platform")
         {
-            _animator.SetTrigger("NotFalling");
-            _animator.ResetTrigger("IsFalling");
-            _animator.ResetTrigger("IsJumping");
-            _grounded = true;
-        }
-    }
+			if(_animator != null)
+			{
+				_animator.SetTrigger("NotFalling");
+				_animator.ResetTrigger("IsFalling");
+				_animator.ResetTrigger("IsJumping");
 
-    void ShowGameOver()
+			}
+			_grounded = true;
+			
+		}
+	}
+	
+	void ShowGameOver()
     {
         _canvasGroup.SetActive(true);
 		_canvasGroup.transform.FindChild ("GameOver").GetComponent<Text> ().enabled = true;
@@ -242,7 +249,18 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
 
-        if (collider.GetComponent<Powerup>() != null)
+		if (collider.gameObject.tag == "spike" && Health > 0 && Invincible == false)
+		{
+			_hurt = true;
+
+			//call powerup and be slower
+
+			Powerup.SlowDown(this);
+			_powerUped = true;
+		}
+
+		
+		if (collider.GetComponent<Powerup>() != null)
         {
 			//se om det er invici eller speed up
 

@@ -14,6 +14,7 @@ public class Menu : MonoBehaviour {
 		Player = _player.GetComponent<PlayerController>();
 		Player.enabled = false;
 
+
 		FindObjectOfType<AngryMob> ().enabled = false;
 		//check if space is pressed
 		//if yes then spawn the player

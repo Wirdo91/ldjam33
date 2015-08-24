@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.2633457, y: -.725004733, z: .00390625}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -39,19 +39,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75fb296f06e5f0e48b018f2d87b9fe73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _floorPlatform: {fileID: 0}
-  _platform: {fileID: 118332, guid: a40ab1eda6d36ff429c1e6f3097961af, type: 2}
+  _floorPlatform: {fileID: 197594, guid: a40ab1eda6d36ff429c1e6f3097961af, type: 2}
+  _platform: {fileID: 120972, guid: 142a8b2134c15ad44b89da1765ec5d5d, type: 2}
   _spike: {fileID: 181300, guid: b07bfc43ca649c94c9f2eb5f0148933e, type: 2}
+  _villager: {fileID: 187688, guid: 3aa40c034fca0984894096c8e438e03a, type: 2}
   _powerUpSpawnTimer: 2
   _powerUps:
   - {fileID: 190656, guid: e363c868cfe214a49a4b938fde64e1c5, type: 2}
   - {fileID: 193656, guid: e82ed6ac5229779468fc2a0431b1de3f, type: 2}
   - {fileID: 163614, guid: eb65148afdbd0da40965491aa79e72c7, type: 2}
-  - {fileID: 195702, guid: f004b7abbba14cb49bf26bb13e4db358, type: 2}
-  _player: {fileID: 134912, guid: 174dcb36425db15448d67fe4d15f7b07, type: 2}
-  _spawnEgde: {x: -10, y: -5}
-  _cameraOffset: 0
-  _floorOffset: 0
+  - {fileID: 195702, guid: 30ce6a9f999600e4694704f6ae52d791, type: 2}
+  _player: {fileID: 0}
+  _spawnEgde: {x: -9, y: -5}
+  _cameraOffset: 5
+  _floorOffset: 8
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
