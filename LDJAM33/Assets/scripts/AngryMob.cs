@@ -26,7 +26,7 @@ public class AngryMob : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         _player = FindObjectOfType<PlayerController>();
-        this.transform.position = new Vector3((_player.transform.position.x - 3), -4, 0);
+        this.transform.position = new Vector3((_player.transform.position.x - 5), -4, 0);
         _baseSpeed = _player.Speed;
         _baseDistance = _player.transform.position.x - this.transform.position.x;
 		_speed = _baseSpeed;
@@ -42,7 +42,7 @@ public class AngryMob : MonoBehaviour {
 		_autoFrenzy -= Time.deltaTime;
 		if (_autoFrenzy <= 0) 
 		{
-			if (Random.Range (0, 100) == 13) 
+			if (Random.Range (0, 100) <= 5) 
 			{
 				_frenzied = true;
 			}

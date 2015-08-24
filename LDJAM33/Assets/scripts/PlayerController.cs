@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject _particles;
 
-    private Vector2 _force = new Vector2(0, 50);
+    private Vector2 _force = new Vector2(0, 40);
     private Rigidbody2D _playerRigidbody;
     private bool _grounded;
     Camera _gameCamera;
@@ -21,13 +21,13 @@ public class PlayerController : MonoBehaviour
 	private int _powerUpType;
     public float powerUpTimer = 5;
     private bool _powerUped;
-    private float _health = 3;
+    private float _health = 5;
     [SerializeField]
     private Image healthBar;
 	private bool _invincible;
 	private float _invincibleTimer = 2;
 	private bool _hurt;
-	private float maxHealth = 3;
+	private float maxHealth = 5;
 	private Animator _animator;
 	private float _score;
 	private Text _scoreText;
