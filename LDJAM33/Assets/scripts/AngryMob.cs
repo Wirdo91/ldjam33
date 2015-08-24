@@ -11,7 +11,7 @@ public class AngryMob : MonoBehaviour {
     bool _frenzied = false;
 
     float _baseSpeed;
-
+	float _autoFrenzy;
 	float _speed;
 
     [SerializeField]
@@ -30,6 +30,8 @@ public class AngryMob : MonoBehaviour {
         _baseSpeed = _player.Speed;
         _baseDistance = _player.transform.position.x - this.transform.position.x;
 		_speed = _baseSpeed;
+		_autoFrenzy = (float)new System.Random ().Next (2, 4);
+
 	}
 
     float debugDistance;
@@ -37,10 +39,16 @@ public class AngryMob : MonoBehaviour {
 	void Update () {
         this.transform.Translate(Vector3.right * _speed * Time.deltaTime);
 
-		if (Random.Range (0, 100) == 13) 
+		_autoFrenzy -= Time.deltaTime;
+		if (_autoFrenzy <= 0) 
 		{
-			_frenzied = true;
+			if (Random.Range (0, 100) == 13) 
+			{
+				_frenzied = true;
+			}
+			_autoFrenzy = (float)new System.Random ().Next (2, 4);
 		}
+
 
         if (_player.Speed > _baseSpeed)
         {
