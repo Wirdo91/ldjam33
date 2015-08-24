@@ -151,7 +151,9 @@ public class PlayerController : MonoBehaviour
 
 		if(gameObject.transform.position.y > -3)
 		{
-			_animator.SetTrigger("IsFalling");
+            _animator.SetTrigger("IsFalling");
+            _animator.ResetTrigger("IsJumping");
+            _animator.ResetTrigger("NotFalling");
 		}
 
         if (this._playerRigidbody.velocity.y > 0)
@@ -196,7 +198,9 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.tag == "platform")
         {
-			_animator.SetTrigger("NotFalling");
+            _animator.SetTrigger("NotFalling");
+            _animator.ResetTrigger("IsFalling");
+            _animator.ResetTrigger("IsJumping");
             _grounded = true;
         }
     }
@@ -212,16 +216,16 @@ public class PlayerController : MonoBehaviour
 
     void CheckDeath()
     {
+        if (Health == 0)
+        {
+            _dead = true;
+
+        }  
 		if (_dead) 
 		{
 			ShowGameOver();
-		}
-        if (Health == 0)
-        {
-			ShowGameOver();
-            _dead = true;
-
-        }           
+            _animator.SetBool("IsDead", true);
+		}         
 
         if (_player.transform.position.y <= -6)
         {
@@ -257,7 +261,9 @@ public class PlayerController : MonoBehaviour
 
     void Jump(Vector2 force)
     {
-		_animator.SetTrigger ("IsJumping");
+        _animator.SetTrigger("IsJumping");
+        _animator.ResetTrigger("IsFalling");
+        _animator.ResetTrigger("NotFalling");
         _playerRigidbody.AddForce(force, ForceMode2D.Impulse);
     }
 }

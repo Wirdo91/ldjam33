@@ -1,14 +1,14 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &119958
+--- !u!1 &168324
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 442102}
-  - 114: {fileID: 11479176}
+  - 4: {fileID: 468626}
+  - 114: {fileID: 11419998}
   m_Layer: 0
   m_Name: WorldGen
   m_TagString: Untagged
@@ -16,36 +16,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &442102
+--- !u!4 &468626
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 119958}
+  m_GameObject: {fileID: 168324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 27.2633457, y: -.725004733, z: .00390625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11479176
+--- !u!114 &11419998
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 119958}
+  m_GameObject: {fileID: 168324}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75fb296f06e5f0e48b018f2d87b9fe73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _floorPlatform: {fileID: 197594, guid: a40ab1eda6d36ff429c1e6f3097961af, type: 2}
-  _platform: {fileID: 164754, guid: 969ebd4e1acb6eb4792a0c435c6660e8, type: 2}
+  _platform: {fileID: 118332, guid: a40ab1eda6d36ff429c1e6f3097961af, type: 2}
   _spike: {fileID: 181300, guid: b07bfc43ca649c94c9f2eb5f0148933e, type: 2}
   _player: {fileID: 134912, guid: 174dcb36425db15448d67fe4d15f7b07, type: 2}
-  _spawnEgde: {x: -9, y: -5}
-  _cameraOffset: 0
-  _floorOffset: 8
+  _spawnEgde: {x: -10, y: -5}
+  _offset: 6
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -57,7 +55,19 @@ Prefab:
       propertyPath: _player
       value: 
       objectReference: {fileID: 134912, guid: 174dcb36425db15448d67fe4d15f7b07, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _offset
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _spike
+      value: 
+      objectReference: {fileID: 181300, guid: b07bfc43ca649c94c9f2eb5f0148933e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _platform
+      value: 
+      objectReference: {fileID: 118332, guid: a40ab1eda6d36ff429c1e6f3097961af, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 119958}
+  m_RootGameObject: {fileID: 168324}
   m_IsPrefabParent: 1
