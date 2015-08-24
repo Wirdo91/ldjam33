@@ -93,7 +93,7 @@ public class WorldGen : MonoBehaviour
                 {
                     for (int j = 1; j < 4; j++)
                     {
-                        _platforms.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + i + j * 6, _spawnEgde.y + j * 2, 0));
+                        _platforms.Spawn(new Vector3(Mathf.Round(_player.transform.position.x) + _cameraOffset + -_spawnEgde.x + i + j * 6, _spawnEgde.y + j * 1.5f, 0));
                     }
                 }
                 _waitTimer = 3;
