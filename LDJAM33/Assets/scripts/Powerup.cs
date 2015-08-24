@@ -28,6 +28,16 @@ public class Powerup : MonoBehaviour {
 			//invincibility
 			player.Invincible = true;
 			break;
+		case(3):
+			//slowdown
+			player.Speed -= 1;
+			player.powerUpTimer = 1;
+			break;
+		case(4):
+			//Giant mode
+			player.transform.localScale += new Vector3(4, 4, 0);
+			player.transform.localScale += new Vector3(4, 4, 0);
+			break;
 		default:
 		
 			break;
