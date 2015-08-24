@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
 	private Animator _animator;
 	private float _score;
 	private Text _scoreText;
+	private Powerup _powerUp;
 
 	public bool Invincible {
 		get {
@@ -137,28 +138,7 @@ public class PlayerController : MonoBehaviour
 		}
         if (powerUpTimer <= 0)
 		{
-			switch (_powerUpType) {
-			case(1):
-				//reset speed up
-				this.Speed = 10;
-				break;
-			case(2):
-				//reset invincibility
-				Debug.Log("reset invinci");
-				Invincible = false;
-				break;
-			case(3):
-				//reset slowdown
-				this.Speed = 10;
-				break;
-			case(4):
-				//reset giant mode
-				this.transform.localScale = new Vector3(2, 2, 0);
-				this.transform.localScale = new Vector3(2, 2, 0);
-				break;
-			default:
-			break;
-			}
+			_powerUp.Reset(this);
 			//reset timer when the power up is done
 			powerUpTimer = 5;
 			_powerUped = false;
@@ -265,9 +245,11 @@ public class PlayerController : MonoBehaviour
         if (collider.GetComponent<Powerup>() != null)
         {
 			//se om det er invici eller speed up
-			this.PowerUpType = 1;
-            collider.GetComponent<Powerup>().affect(this);
-            _powerUped = true;
+
+			_powerUp = collider.GetComponent<Powerup>();
+			_powerUp.Affect(this);
+			_powerUpType = _powerUp.powerUpType;
+			_powerUped = true;
         }
 
         if (collider.name == "Angry Mob") {

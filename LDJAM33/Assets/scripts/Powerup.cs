@@ -2,10 +2,12 @@
 using System.Collections;
 
 public class Powerup : MonoBehaviour {
-	
+
+	public int powerUpType;
+
 	// Use this for initialization
 	void Start () {
-		
+
 	}
 	
 	// Update is called once per frame
@@ -13,15 +15,44 @@ public class Powerup : MonoBehaviour {
 
 
 	}
-	public void affect(PlayerController player)
+
+	public void Reset(PlayerController player)
+	{
+		switch (powerUpType) {
+		case(1):
+			//reset speed up
+			player.Speed = 10;
+			break;
+		case(2):
+			//reset invincibility
+			Debug.Log("reset invinci");
+			player.Invincible = false;
+			break;
+		case(3):
+			//reset slowdown
+			player.Speed = 10;
+			break;
+		case(4):
+			//reset giant mode
+			player.transform.localScale = new Vector3(2, 2, 0);
+			player.transform.localScale = new Vector3(2, 2, 0);
+			break;
+		default:
+			break;
+		}
+
+	}
+
+	public void Affect(PlayerController player)
 	{
 		//Kun efter noget tid...
 
 
 
-		switch (player.PowerUpType) {
+		switch (this.powerUpType) {
 		case(1):
 			//speedup
+
 			player.Speed += 10;
 			break;
 		case(2):

@@ -39,11 +39,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75fb296f06e5f0e48b018f2d87b9fe73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _floorPlatform: {fileID: 0}
   _platform: {fileID: 118332, guid: a40ab1eda6d36ff429c1e6f3097961af, type: 2}
   _spike: {fileID: 181300, guid: b07bfc43ca649c94c9f2eb5f0148933e, type: 2}
+  _powerUpSpawnTimer: 2
+  _powerUps:
+  - {fileID: 190656, guid: e363c868cfe214a49a4b938fde64e1c5, type: 2}
+  - {fileID: 193656, guid: e82ed6ac5229779468fc2a0431b1de3f, type: 2}
+  - {fileID: 163614, guid: eb65148afdbd0da40965491aa79e72c7, type: 2}
+  - {fileID: 195702, guid: f004b7abbba14cb49bf26bb13e4db358, type: 2}
   _player: {fileID: 134912, guid: 174dcb36425db15448d67fe4d15f7b07, type: 2}
   _spawnEgde: {x: -10, y: -5}
-  _offset: 6
+  _cameraOffset: 0
+  _floorOffset: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -51,6 +59,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: _powerUps.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _player
       value: 
@@ -67,6 +79,38 @@ Prefab:
       propertyPath: _platform
       value: 
       objectReference: {fileID: 118332, guid: a40ab1eda6d36ff429c1e6f3097961af, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _powerUps.Array.data[3]
+      value: 
+      objectReference: {fileID: 195702, guid: f004b7abbba14cb49bf26bb13e4db358, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _powerUps.Array.data[4]
+      value: 
+      objectReference: {fileID: 195702, guid: f004b7abbba14cb49bf26bb13e4db358, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _powerUps.Array.data[5]
+      value: 
+      objectReference: {fileID: 195702, guid: f004b7abbba14cb49bf26bb13e4db358, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _powerUps.Array.data[6]
+      value: 
+      objectReference: {fileID: 195702, guid: f004b7abbba14cb49bf26bb13e4db358, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _powerUps.Array.data[7]
+      value: 
+      objectReference: {fileID: 195702, guid: f004b7abbba14cb49bf26bb13e4db358, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _powerUps.Array.data[2]
+      value: 
+      objectReference: {fileID: 163614, guid: eb65148afdbd0da40965491aa79e72c7, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _powerUps.Array.data[1]
+      value: 
+      objectReference: {fileID: 193656, guid: e82ed6ac5229779468fc2a0431b1de3f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _powerUps.Array.data[0]
+      value: 
+      objectReference: {fileID: 190656, guid: e363c868cfe214a49a4b938fde64e1c5, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 168324}
