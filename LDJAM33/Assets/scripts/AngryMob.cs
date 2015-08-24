@@ -17,20 +17,38 @@ public class AngryMob : MonoBehaviour {
     [SerializeField]
     GameObject _pitchforkPrefab;
 
+    float _baseDistance;
+
+    bool behind = false;
+
 	// Use this for initialization
 	void Start () {
         _player = FindObjectOfType<PlayerController>();
 
         this.transform.position = new Vector3((_player.transform.position.x - 3), -4, 0);
         _baseSpeed = _player._speed;
+        _baseDistance = _player.transform.position.x - this.transform.position.x;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (_player._speed == _baseSpeed)
+        if (_player._speed == _baseSpeed && !behind)
+        {
             this.transform.Translate(Vector3.right * _baseSpeed * Time.deltaTime);
-        else
+        }
+        else if (behind)
+        {
             this.transform.Translate(Vector3.right * (_player._speed * .75f) * Time.deltaTime);
+        }
+
+        if (_player.transform.position.x - this.transform.position.x > _baseDistance)
+        {
+            behind = true;
+        }
+        else
+        {
+            behind = false;
+        }
 
         if (_frenzied)
         {
