@@ -15,34 +15,108 @@ public class PlayerController : MonoBehaviour
     Camera _gameCamera;
     [SerializeField]
     private GameObject _canvasGroup;
-    public float _speed;
+	[SerializeField]
+    private float _speed;
     private bool _dead;
+	private int _powerUpType;
     public float powerUpTimer = 5;
     private bool _powerUped;
-    private int health = 3;
+    private float _health = 3;
     [SerializeField]
     private Image healthBar;
+	private bool _invincible;
+	private float _invincibleTimer = 2;
+	private bool hurt;
+	private float maxHealth = 3;
+	private Animator _animator;
 
+	public bool Invincible {
+		get {
+			return _invincible;
+		}
+		set {
+			_invincible = value;
+		}
+	}
+	
+	public float Speed {
+		get {
+			return _speed;
+		}
+		set {
+			_speed = value;
+		}
+	}
 
+	public int PowerUpType {
+		get{
+			return _powerUpType;
+		}
+		set{
+			_powerUpType = value;
+		}
+	}
+
+	public bool Dead {
+		get{
+			return _dead;
+		}
+		set{
+			_dead = value;
+		}
+	}
+
+	public float Health {
+		get{
+			return _health;
+		}
+
+		set{
+			if(value == 0)
+			{
+				ShowGameOver();
+			}
+			_health = value;
+			healthBar.fillAmount = Health/maxHealth;
+
+		}
+	}
     void Start()
     {
-        _player = this.gameObject;
+
+		//show menu
+		//do not walk
+		_player = this.gameObject;
         _grounded = true;
         _playerRigidbody = GetComponent<Rigidbody2D>();
         _gameCamera = Camera.main;
         _playerRigidbody.freezeRotation = true;
-        _dead = false;
         _powerUped = false;
-        Transform textbox = _canvasGroup.transform.FindChild("GameOver");
-        textbox.gameObject.SetActive(false);
+		_animator = GetComponent<Animator> ();
+
+        
+
 
     }
     void Update()
     {
-        _gameCamera.transform.position = new Vector3(this.transform.position.x + 6, 0, -10);
-        _particles.transform.position = new Vector3(this.transform.position.x + 20 , 0, 0);
+		//walk
+		//the start wait untill you have pressed jump before you start
+
+		if (_dead) {
+			ShowGameOver();
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				//just restart scene
+				Application.LoadLevel(Application.loadedLevel);
+			}
+			return;
+		}
+		
+		_gameCamera.transform.position = new Vector3(this.transform.position.x + 4, -0.5f, -10);
+        _particles.transform.position = new Vector3(this.transform.position.x + 14, 0, 0);
         _player.transform.Translate(Vector2.right * _speed * Time.deltaTime);
-        CheckDeath();
+        
         if (_powerUped)
         {
             powerUpTimer -= Time.deltaTime;
@@ -52,6 +126,22 @@ public class PlayerController : MonoBehaviour
             _speed = 10;
         }
 
+		if (Invincible == true) 
+		{
+			_invincibleTimer -= Time.deltaTime;
+
+		}
+		if (_invincibleTimer <= 0) 
+		{
+			Invincible = false;
+			_invincibleTimer = 2;
+		}
+
+		if(gameObject.transform.position.y > -3)
+		{
+			_animator.SetTrigger("IsFalling");
+		}
+
         if (this._playerRigidbody.velocity.y > 0)
         {
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), true);
@@ -60,86 +150,102 @@ public class PlayerController : MonoBehaviour
         {
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), false);
         }
+
+		if (hurt && !Invincible) 
+		{
+			//take dmg
+			Health -= 1;
+			healthBar.fillAmount = Health / maxHealth;
+			Invincible = true;
+			Debug.Log("invis in last update" + Invincible);
+			hurt = false;
+		}
+
+		CheckDeath();
     }
 
     void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _grounded)
+		if (Input.GetKeyDown(KeyCode.Space) && _grounded)
         {
             Jump(_force);
             _grounded = false;
         }
-    }
-
-
-    void OnCollisionEnter2D(Collision2D collision)
+		
+	}
+	
+	void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "spike" && health > 0)
+        if (collision.gameObject.tag == "spike" && Health > 0 && Invincible == false)
         {
-            //take dmg
-            health -= 1;
-            healthBar.fillAmount = 1 / health;
-
-
+			hurt = true;
         }
 
         if (collision.gameObject.tag == "platform")
         {
+			_animator.SetTrigger("NotFalling");
             _grounded = true;
         }
     }
 
     void ShowGameOver()
     {
-        Transform textbox = _canvasGroup.transform.FindChild("GameOver");
-        textbox.gameObject.SetActive(true);
+        _canvasGroup.SetActive(true);
+		_canvasGroup.transform.FindChild ("GameOver").gameObject.SetActive (true);
+		FindObjectOfType<BackgroundController> ().enabled = false;
         //Destroy (_player);
         //destroy world gen?
     }
 
     void CheckDeath()
     {
+		if (_dead) 
+		{
+			ShowGameOver();
+		}
+        if (Health == 0)
+        {
+			ShowGameOver();
+            _dead = true;
+
+        }           
 
         if (_player.transform.position.y <= -6)
         {
-
-            //Call gameover
-            ShowGameOver();
+            //TODO: Call gameover
+			ShowGameOver();
+            _canvasGroup.SetActive(true);
             _dead = true;
+
         }
-        if (health == 0)
-        {
-            _dead = true;
-            ShowGameOver();
 
-            if (_player.transform.position.y <= -6)
-            {
-                //TODO: Call gameover
-                _canvasGroup.SetActive(true);
-                _dead = true;
 
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space) && _dead == true)
-            {
-                //just restart scene
-                Application.LoadLevel(Application.loadedLevel);
-            }
-        }
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+
         if (collider.GetComponent<Powerup>() != null)
         {
+			//se om det er invici eller speed up
+			this.PowerUpType = 1;
             collider.GetComponent<Powerup>().affect(this);
             _powerUped = true;
         }
+
+        if (collider.name == "Angry Mob")
+        {
+            Health = 0;
+            _dead = true;
+        }
+        else if (collider.GetComponent<WeaponMove>() != null)
+            hurt = true;
     }
 
     void Jump(Vector2 force)
     {
+		_animator.SetTrigger ("IsJumping");
         _playerRigidbody.AddForce(force, ForceMode2D.Impulse);
     }
 }

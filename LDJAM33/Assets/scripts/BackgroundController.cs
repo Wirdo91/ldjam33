@@ -24,6 +24,9 @@ public class BackgroundController : MonoBehaviour {
     Queue<Transform> _middleBacks;
 
     Transform tmp_middle;
+
+    Vector3[] _initialForBacks;
+    Vector3[] _initialMiddleBacks;
 	
     void Start()
     {
@@ -54,6 +57,32 @@ public class BackgroundController : MonoBehaviour {
 
             _forBacks.Enqueue(_secondForBack);
         }
+
+        _initialMiddleBacks = new Vector3[_middleBacks.Count];
+        for (int i = 0; i < _middleBacks.Count; i++)
+        {
+            _initialMiddleBacks[i] = _middleBacks.ToArray()[i].localPosition;
+        }
+
+        _initialForBacks = new Vector3[_forBacks.Count];
+        for (int i = 0; i < _forBacks.Count; i++)
+        {
+            _initialForBacks[i] = _forBacks.ToArray()[i].localPosition;
+        }
+    }
+    [SerializeField]
+    bool reset = false;
+    public void Reset()
+    {
+        for (int i = 0; i < _middleBacks.Count; i++)
+        {
+            _middleBacks.ToArray()[i].localPosition = _initialMiddleBacks[i];
+        }
+
+        for (int i = 0; i < _forBacks.Count; i++)
+        {
+            _forBacks.ToArray()[i].localPosition = _initialForBacks[i];
+        }
     }
 
 	// Update is called once per frame
@@ -69,7 +98,7 @@ public class BackgroundController : MonoBehaviour {
         }
         foreach (Transform middleBack in _middleBacks.ToArray())
         {
-            middleBack.position += new Vector3(_middleMoveSpeed * player._speed * Time.deltaTime, 0, 0);
+            middleBack.position += new Vector3(_middleMoveSpeed * player.Speed * Time.deltaTime, 0, 0);
         }
 
         if (_forBacks.Peek().localPosition.x < - 20)
@@ -83,7 +112,13 @@ public class BackgroundController : MonoBehaviour {
 
         foreach (Transform forBack in _forBacks.ToArray())
         {
-            forBack.position += new Vector3(_forMoveSpeed * player._speed * Time.deltaTime, 0, 0);
+            forBack.position += new Vector3(_forMoveSpeed * player.Speed * Time.deltaTime, 0, 0);
+        }
+
+        if (reset)
+        {
+            Reset();
+            reset = false;
         }
     }
 }
