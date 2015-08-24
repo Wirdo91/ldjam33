@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject _particles;
 
-    private Vector2 _force = new Vector2(0, 30);
+    private Vector2 _force = new Vector2(0, 50);
     private Rigidbody2D _playerRigidbody;
     private bool _grounded;
     Camera _gameCamera;
@@ -105,6 +105,10 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        Vector2 S = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size;
+        gameObject.GetComponent<BoxCollider2D>().size = S;
+        gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0, 0);
+
 		//walk
 		//the start wait untill you have pressed jump before you start
 
