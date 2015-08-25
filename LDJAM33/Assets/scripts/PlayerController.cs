@@ -206,12 +206,20 @@ public class PlayerController : MonoBehaviour
 			
 		}
 	}
-	
+
+    bool ScoreSaved = false;
 	void ShowGameOver()
     {
         _canvasGroup.SetActive(true);
 		_canvasGroup.transform.FindChild ("GameOver").GetComponent<Text> ().enabled = true;
 		FindObjectOfType<BackgroundController> ().enabled = false;
+
+        if (!ScoreSaved)
+        {
+            Debug.Log("Saving " + _score * 10);
+            FindObjectOfType<Highscore>().AddScore((int)_score * 10);
+            ScoreSaved = true;
+        }
         //Destroy (_player);
         //destroy world gen?
     }
