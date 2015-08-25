@@ -25,7 +25,6 @@ public class Powerup : MonoBehaviour {
 			break;
 		case(2):
 			//reset invincibility
-			Debug.Log("reset invinci");
 			player.Invincible = false;
 			break;
 		case(3):

@@ -672,58 +672,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11446624, guid: 88c6879ec5ff0634685f88f936221088, type: 2}
-      propertyPath: m_Text
-      value: "You are Frankenstein's Monster.\r\nThe castle have been destroyed, and
-        your master is gone.\r\nThe villagers have found you and are determined to
-        stop you\u2026 Violently.\r\nYou need to get away.\r\n\r\nPress \u2018space\u2019
-        to jump.\r\nCollect powerups.\r\nAvoid being caught."
-      objectReference: {fileID: 0}
-    - target: {fileID: 22405012, guid: 88c6879ec5ff0634685f88f936221088, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 275
-      objectReference: {fileID: 0}
-    - target: {fileID: 22405012, guid: 88c6879ec5ff0634685f88f936221088, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -52.5209999
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421142, guid: 88c6879ec5ff0634685f88f936221088, type: 2}
-      propertyPath: m_Text
-      value: "Credits: \nFor Ludum Dare 33\nJackie Christensen (@Jacksendary)\nNicolai
-        L. H. Kirk (@Wirdo91)\nMichael Dolatko (@DinoDinozaur)\nHamun Munikiki (@Munikiki)"
-      objectReference: {fileID: 0}
-    - target: {fileID: 22431916, guid: 88c6879ec5ff0634685f88f936221088, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -162
-      objectReference: {fileID: 0}
-    - target: {fileID: 22431916, guid: 88c6879ec5ff0634685f88f936221088, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 477
-      objectReference: {fileID: 0}
-    - target: {fileID: 22431916, guid: 88c6879ec5ff0634685f88f936221088, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 127.459991
-      objectReference: {fileID: 0}
-    - target: {fileID: 22460578, guid: 88c6879ec5ff0634685f88f936221088, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -120
-      objectReference: {fileID: 0}
-    - target: {fileID: 22460578, guid: 88c6879ec5ff0634685f88f936221088, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22498366, guid: 88c6879ec5ff0634685f88f936221088, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 22405012, guid: 88c6879ec5ff0634685f88f936221088, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 22405012, guid: 88c6879ec5ff0634685f88f936221088, type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 345.040009
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88c6879ec5ff0634685f88f936221088, type: 2}
   m_IsPrefabParent: 0
@@ -731,17 +679,6 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 143130, guid: 88c6879ec5ff0634685f88f936221088, type: 2}
   m_PrefabInternal: {fileID: 1123976117}
---- !u!114 &1123976120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1123976118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a0f0a61ad98ee439f741cf1b07cdcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1305519707
 Prefab:
   m_ObjectHideFlags: 0

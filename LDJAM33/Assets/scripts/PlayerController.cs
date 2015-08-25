@@ -217,7 +217,6 @@ public class PlayerController : MonoBehaviour
 
         if (!ScoreSaved)
         {
-            Debug.Log("Saving " + _score * 10);
             FindObjectOfType<Highscore>().AddScore((int)_score * 10);
             ScoreSaved = true;
         }

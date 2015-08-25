@@ -23,7 +23,6 @@ public class Highscore : MonoBehaviour {
 
     public void AddScore(int score)
     {
-        Debug.Log("Meh");
         if (score > highscore[highscore.Count - 1])
         {
             highscore.Add(score);

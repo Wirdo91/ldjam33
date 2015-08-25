@@ -30,6 +30,7 @@ GameObject:
   - 114: {fileID: 11416066}
   - 225: {fileID: 22559276}
   - 114: {fileID: 11484928}
+  - 114: {fileID: 11416530}
   m_Layer: 5
   m_Name: OverlayScreen
   m_TagString: Untagged
@@ -104,6 +105,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &11416530
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 143130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a0f0a61ad98ee439f741cf1b07cdcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11421142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,7 +141,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Credits: \nFor Ludum dare 33\nJackie\nNicolai\nMichael\nHamun"
+  m_Text: "Credits: \nFor Ludum Dare 33\nJackie Christensen (@Jacksendary)\nNicolai
+    L. H. Kirk (@Wirdo91)\nMichael Dolatko (@DinoDinozaur)\nHamun Munikiki (@Munikiki)"
 --- !u!114 &11428128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,10 +189,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "You are Frankenstein Monster.\r\nThe castle have been destroyed, and your
-    master is gone.\r\nThe villagers have found you and are determined to stop you\u2026
-    Violently.\r\nYou need to get away.\r\n\r\nPress \u2018space\u2019 to jump.\r\nCollect
-    powerups.\r\nAvoid being caught."
+  m_Text: "You are Frankenstein's Monster.\r\nThe castle have been destroyed, and
+    your master is gone.\r\nThe villagers have found you and are determined to stop
+    you\u2026 Violently.\r\nYou need to get away.\r\n\r\nPress \u2018space\u2019 to
+    jump.\r\nCollect powerups.\r\nAvoid being caught."
 --- !u!114 &11458482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -300,8 +313,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 262.5, y: -175}
-  m_SizeDelta: {x: 275, y: 465}
+  m_AnchoredPosition: {x: 275, y: -52.5209999}
+  m_SizeDelta: {x: 250, y: 345.040009}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22431916
 RectTransform:
@@ -317,8 +330,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -259.5, y: 127.459999}
-  m_SizeDelta: {x: 281, y: 195}
+  m_AnchoredPosition: {x: -162, y: 127.459991}
+  m_SizeDelta: {x: 477, y: 195}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22460578
 RectTransform:
@@ -334,7 +347,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 3.05175781e-05, y: 82}
+  m_AnchoredPosition: {x: 0, y: -120}
   m_SizeDelta: {x: 281, y: 65}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22496378
@@ -372,7 +385,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 82}
+  m_AnchoredPosition: {x: 0, y: -10}
   m_SizeDelta: {x: 281, y: 65}
   m_Pivot: {x: .5, y: .5}
 --- !u!225 &22559276
