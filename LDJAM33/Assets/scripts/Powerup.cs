@@ -34,8 +34,7 @@ public class Powerup : MonoBehaviour {
 			break;
 		case(4):
 			//reset giant mode
-			player.transform.localScale = new Vector3(2, 2, 0);
-			player.transform.localScale = new Vector3(2, 2, 0);
+			player.transform.localScale = new Vector3(2, 2, 1);
 			break;
 		default:
 			break;
@@ -49,7 +48,7 @@ public class Powerup : MonoBehaviour {
 
 
 
-		switch (this.powerUpType) {
+		switch (powerUpType) {
 		case(1):
 			//speedup
 
@@ -66,7 +65,8 @@ public class Powerup : MonoBehaviour {
 			break;
 		case(4):
 			//Giant mode
-			player.transform.localScale = new Vector3(4, 4, 0);
+			player.transform.localScale = new Vector3(4, 4, 1);
+			player.powerUpTimer = 3;
 			break;
 
 		case(5):
@@ -80,12 +80,6 @@ public class Powerup : MonoBehaviour {
 
 
 		Destroy(this.gameObject);
-	}
-
-	static public void SlowDown(PlayerController player)
-	{
-		player.Speed -= 1f;
-		player.powerUpTimer = 1f;
 	}
 
 }

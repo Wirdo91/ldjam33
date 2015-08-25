@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject _particles;
 
-    private Vector2 _force = new Vector2(0, 40);
+    private Vector2 _force = new Vector2(0, 50);
     private Rigidbody2D _playerRigidbody;
     private bool _grounded;
     Camera _gameCamera;
@@ -21,13 +21,13 @@ public class PlayerController : MonoBehaviour
 	private int _powerUpType;
     public float powerUpTimer = 5;
     private bool _powerUped;
-    private float _health = 5;
+    private float _health = 3;
     [SerializeField]
     private Image healthBar;
 	private bool _invincible;
 	private float _invincibleTimer = 2;
 	private bool _hurt;
-	private float maxHealth = 5;
+	private float maxHealth = 3;
 	private Animator _animator;
 	private float _score;
 	private Text _scoreText;
@@ -139,11 +139,8 @@ public class PlayerController : MonoBehaviour
 		}
         if (powerUpTimer <= 0)
 		{
-			if(_powerUp != null){
-				_powerUp.Reset(this);
-			}
-			else
-				Speed = 10;
+			_powerUp.Reset(this);
+			Speed = 10;
 			//reset timer when the power up is done
 			powerUpTimer = 5;
 			_powerUped = false;
@@ -174,6 +171,10 @@ public class PlayerController : MonoBehaviour
 			//be invincible
 			Invincible = true;
 			_hurt = false;
+			//be slower
+			this.Speed--;
+			_powerUped = true;
+			powerUpTimer = 1;
 		}
 
 		CheckDeath();
@@ -263,8 +264,8 @@ public class PlayerController : MonoBehaviour
 
 			//call powerup and be slower
 
-			Powerup.SlowDown(this);
-			_powerUped = true;
+			//be slower
+
 		}
 
 		
@@ -274,7 +275,6 @@ public class PlayerController : MonoBehaviour
 
 			_powerUp = collider.GetComponent<Powerup>();
 			_powerUp.Affect(this);
-			_powerUpType = _powerUp.powerUpType;
 			_powerUped = true;
         }
 
